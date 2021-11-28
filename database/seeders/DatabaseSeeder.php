@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Assesment;
 use App\Models\Konselor;
+use App\Models\KritikSaran;
 use App\Models\Mahasiswa;
 use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
@@ -75,6 +76,11 @@ class DatabaseSeeder extends Seeder
             'nim' => 321,
             'email' => "mahasiswa2@gmail.com",
             'jenis_kelamin' => "Perempuan",
+            'tanggal' => '2021/09/22'
+        ]);
+
+        KritikSaran::create([
+            'kritik_saran' => "lorem asdkflj",
             'tanggal' => '2021/09/22'
         ]);
     }

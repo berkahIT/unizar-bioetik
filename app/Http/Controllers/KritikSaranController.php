@@ -15,7 +15,9 @@ class KritikSaranController extends Controller
      */
     public function index()
     {
-        return view('admin.kritik_saran');
+        return view('admin.kritik_saran', [
+            "kritik_saran" => KritikSaran::all(),
+        ]);
     }
 
     /**
@@ -36,7 +38,7 @@ class KritikSaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -58,7 +60,7 @@ class KritikSaranController extends Controller
      */
     public function edit($id)
     {
-        //
+       
     }
 
     /**
@@ -70,7 +72,7 @@ class KritikSaranController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -81,6 +83,8 @@ class KritikSaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        KritikSaran::destroy($id);
+
+        return redirect('/admin/kritik_saran')->with('success', 'Kritik dan saran has been delted!');
     }
 }

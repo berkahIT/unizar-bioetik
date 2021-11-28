@@ -15,6 +15,10 @@ class CreateRekamMediksTable extends Migration
     {
         Schema::create('rekam_mediks', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->integer('konsultasi_id');
+            $table->string('photo_rekam_medik');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

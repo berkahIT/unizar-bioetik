@@ -64,14 +64,14 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="/admin/history_assesment"
                         class="nav-link {{ Request::is('admin/history_assesment*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-history"></i>
                         <p>History Assesment
                         </p>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                     <a href="/admin/kritik_saran"
