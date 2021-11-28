@@ -20,8 +20,8 @@
 
             <div class="card">
                 <div class="card-header">
-                    <button class="btn btn-success float-right" data-toggle="modal" data-target="#addRowModal"><i
-                            class="fas fa-plus"></i> Tambah</button>
+                    <a href="/admin/konselor" class="btn btn-warning float-right"><i class="fas fa-angle-left"></i>
+                        Kembali</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -32,15 +32,33 @@
                                 <div class="form-group">
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control" id="username" name="username"
-                                        placeholder="Username">
+                                        placeholder="Username" @error('username') is-invalid @enderror"
+                                        value="{{ old('username', $assesment->username) }}">
+                                    @error('username')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror>
                                 </div>
                                 <div class="form-group">
                                     <label for="nama">Nama</label>
-                                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
+                                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama"
+                                        @error('nama') is-invalid @enderror" value="{{ old('nama', $assesment->nama) }}">
+                                    @error('nama')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror>
                                 </div>
                                 <div class="form-group">
                                     <label for="nim">NIDN</label>
-                                    <input type="text" class="form-control" id="nim" name="nim" placeholder="NIDN">
+                                    <input type="text" class="form-control" id="nim" name="nim" placeholder="NIDN"
+                                        @error('nidn') is-invalid @enderror" value="{{ old('nidn', $assesment->nidn) }}">
+                                    @error('nidn')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Jenis Kelamin</label>
@@ -51,18 +69,36 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tgl">Tanggal Lahir</label>
-                                    <input type="date" class="form-control" id="tgl" name="tgl"
-                                        placeholder="Tanggal Lahir">
+                                    <label for="tanggal">Tanggal Lahir</label>
+                                    <input type="date" class="form-control" id="tanggal" name="tanggal"
+                                        placeholder="Tanggal Lahir" @error('tanggal') is-invalid @enderror"
+                                        value="{{ old('tanggal', $assesment->tanggal) }}">
+                                    @error('tanggal')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                                        @error('email') is-invalid @enderror" value="{{ old('email', $assesment->email) }}">
+                                    @error('email')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror>
                                 </div>
                                 <div class="form-group">
-                                    <label for="passwords">Tanggal Lahir</label>
+                                    <label for="passwords">Password</label>
                                     <input type="password" class="form-control" id="passwords" name="passwords"
-                                        placeholder="Password">
+                                        placeholder="Password" @error('passwords') is-invalid @enderror"
+                                        value="{{ old('passwords', $konseler->passwords) }}">
+                                    @error('passwords')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror>
                                 </div>
                             </div>
                         </div>

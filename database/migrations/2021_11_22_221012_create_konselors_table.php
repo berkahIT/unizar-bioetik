@@ -21,7 +21,7 @@ class CreateKonselorsTable extends Migration
             $table->string('nidn');
             $table->string('jenis_kelamin');
             $table->string('email');
-            $table->date('tgl');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

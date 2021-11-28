@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Konselor;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -15,7 +16,7 @@ class KonselorController extends Controller
      */
     public function index()
     {
-        return view('admin.konselor',[
+        return view('admin.konselor', [
             "konselor" => Konselor::all(),
         ]);
     }
@@ -45,12 +46,12 @@ class KonselorController extends Controller
             'jenis_kelamin' => 'required',
             'nidn' => 'required',
             'email' => 'required',
-            'tgl' => 'required',
+            'tanggal' => 'required',
         ]);
 
         Konselor::create($validatedDate);
 
-        return redirect('/admin/konselor')->with('success','New Konselor has been addedd!');
+        return redirect('/admin/konselor')->with('success', 'New Konselor has been addedd!');
     }
 
     /**
@@ -72,7 +73,10 @@ class KonselorController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.konselor_e');
+        return view('admin.konselor_e', [
+            "title" => "Konselor",
+            "konselor" => Konselor::where('id', $id)->first()
+        ]);
     }
 
     /**
@@ -84,7 +88,19 @@ class KonselorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedDate = $request->validate([
+            'nama' => 'required',
+            'username' => 'required',
+            'passwords' => 'required',
+            'nidn' => 'required',
+            'email' => 'required',
+            'jenis_kelamin' => 'required',
+            'tanggal' => 'required'
+        ]);
+
+        Konselor::where('id', $id)->update($validatedDate);
+
+        return redirect('/admin/konselor')->with('success','Konselor has been update!');
     }
 
     /**
@@ -97,6 +113,6 @@ class KonselorController extends Controller
     {
         Konselor::destroy($id);
 
-        return redirect('/admin/konselor')->with('success','Konselor has been delted!');
+        return redirect('/admin/konselor')->with('success', 'Konselor has been delted!');
     }
 }

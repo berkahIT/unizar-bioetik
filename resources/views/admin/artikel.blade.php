@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Konselor</h1>
+                <h1>Artikel</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Konselor</li>
+                    <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Artikel</li>
                 </ol>
             </div>
         </div>
@@ -19,110 +19,30 @@
         <div class="col-12">
 
             <div class="card">
-                <div class="card-header">
-                    <button class="btn btn-success float-right" data-toggle="modal" data-target="#addRowModal"><i
-                            class="fas fa-plus"></i> Tambah</button>
-                </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <!-- Modal -->
-                    <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header no-bd">
-                                    <h5 class="modal-title">
-                                        <span class="fw-mediumbold">
-                                            Tambah</span>
-                                        <span class="fw-light">
-                                            Dosen
-                                        </span>
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="small">Silahkan Masukkan Data Konselor</p>
-                                    <form action="/admin/konselor" method="POST">
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <label for="username">Username</label>
-                                                    <input type="text" class="form-control" id="username" name="username"
-                                                        placeholder="Username">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="nama">Nama</label>
-                                                    <input type="text" class="form-control" id="nama" name="nama"
-                                                        placeholder="Nama">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="nidn">NIDN</label>
-                                                    <input type="text" class="form-control" id="nidn" name="nidn"
-                                                        placeholder="NIDN">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="exampleFormControlSelect1">Jenis Kelamin</label>
-                                                    <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
-                                                        <option value=""><i>Jenis Kelamin</i></option>
-                                                        <option value="Laki-Laki"><i>Laki-Laki</i></option>
-                                                        <option value="Perempuan"><i>Perempuan</i></option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="tanggal">Tanggal Lahir</label>
-                                                    <input type="date" class="form-control" id="tanggal" name="tanggal"
-                                                        placeholder="Tanggal Lahir">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email">Email</label>
-                                                    <input type="email" class="form-control" id="email" name="email"
-                                                        placeholder="Email">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="passwords">Password</label>
-                                                    <input type="password" class="form-control" id="passwords"
-                                                        name="passwords" placeholder="Password">
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                </div>
-                                <div class="modal-footer no-bd">
-                                    <button type="submit" class="btn btn-success">Simpan</button>
-                                    </form>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- Penutup Modal --}}
 
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Nama</th>
-                                <th>Email</th>
-                                <th>Username</th>
-                                <th>NIDN</th>
-                                <th>Tanggal Lahir</th>
+                                <th>Artikel</th>
+                                <th>Skor</th>
+                                <th>Keterangan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($konselor as $konselor)
+                            @foreach ($artikel as $artikel)
                                 <tr>
-                                    <td>{{ $konselor->nama }}</td>
-                                    <td>{{ $konselor->email }}</td>
-                                    <td>{{ $konselor->username }}</td>
-                                    <td>{{ $konselor->nidn }}</td>
-                                    <td>{{ $konselor->tanggal }}</td>
+                                    <td>{{ $artikel->user_id }}</td>
+                                    <td>{{ $artikel->nama }}</td>
+                                    <td>{{ $artikel->skor }}</td>
+                                    <td>{{ $artikel->keterangan }}</td>
                                     <td>
-                                        <a href="/admin/konselor/{{ $konselor->id }}/edit"><i
+                                        <a href="/admin/artikel/{{ $artikel->id }}/edit"><i
                                                 class="fas fa-edit"></i></a> |
-                                        <form action="/admin/konselor/{{ $konselor->id }}" method="post"
+                                        <form action="/admin/artikel/{{ $artikel->id }}" method="post"
                                             class="d-inline">
                                             @method('delete')
                                             @csrf
@@ -137,10 +57,9 @@
                         <tfoot>
                             <tr>
                                 <th>Nama</th>
-                                <th>Email</th>
-                                <th>Username</th>
-                                <th>NIDN</th>
-                                <th>Tanggal Lahir</th>
+                                <th>artikel</th>
+                                <th>Skor</th>
+                                <th>Keterangan</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

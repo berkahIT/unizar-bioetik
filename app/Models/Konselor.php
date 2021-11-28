@@ -16,6 +16,6 @@ class Konselor extends Model
         'nidn',
         'email',
         'jenis_kelamin',
-        'tgl'
+        'tanggal'
     ];
 }

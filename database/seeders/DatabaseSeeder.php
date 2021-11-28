@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Assesment;
+use App\Models\Konselor;
 use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
@@ -34,6 +35,26 @@ class DatabaseSeeder extends Seeder
             'name' => "admin",
             'email' => "admin@gmail.com",
             'password' => "admin",
+        ]);
+
+        Konselor::create([
+            'nama' => "dosen1",
+            'username' => "dosen1",
+            'passwords' => "dosen1",
+            'nidn' => 123,
+            'email' => "dosen@gmail.com",
+            'jenis_kelamin' => "Laki-laki",
+            'tanggal' => '2021/09/22'
+        ]);
+
+        Konselor::create([
+            'nama' => "dosen2",
+            'username' => "dosen2",
+            'passwords' => "dosen2",
+            'nidn' => 321,
+            'email' => "dosen2@gmail.com",
+            'jenis_kelamin' => "Perempuan",
+            'tanggal' => '2021/09/22'
         ]);
     }
 }

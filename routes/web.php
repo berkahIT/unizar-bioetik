@@ -9,6 +9,8 @@ use App\Http\Controllers\KonsultasiController;
 use App\Http\Controllers\KritikSaranController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\RekamMedikController;
+use App\Http\Controllers\ArtikelController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,4 +46,4 @@ Route::resource('/admin/kritik_saran', KritikSaranController::class);
 
 Route::resource('/admin/konsultasi', KonsultasiController::class);
 
-Route::resource('/admin/artikel', KonsultasiController::class);
+Route::resource('/admin/artikel', ArtikelController::class);

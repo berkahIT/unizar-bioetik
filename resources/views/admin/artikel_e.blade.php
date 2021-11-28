@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Konselor</h1>
+                <h1>Assesment</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Konselor</li>
+                    <li class="breadcrumb-item active">Assesment Mandiri</li>
                 </ol>
             </div>
         </div>
@@ -20,131 +20,75 @@
 
             <div class="card">
                 <div class="card-header">
-                    <button class="btn btn-success float-right" data-toggle="modal" data-target="#addRowModal"><i
-                            class="fas fa-plus"></i> Tambah</button>
+                    <a href="/admin/assesment" class="btn btn-warning float-right"><i class="fas fa-angle-left"></i> Kembali</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <!-- Modal -->
-                    <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header no-bd">
-                                    <h5 class="modal-title">
-                                        <span class="fw-mediumbold">
-                                            Tambah</span>
-                                        <span class="fw-light">
-                                            Dosen
-                                        </span>
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="small">Silahkan Masukkan Data Konselor</p>
-                                    <form action="/admin/konselor" method="POST">
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <label for="username">Username</label>
-                                                    <input type="text" class="form-control" id="username" name="username"
-                                                        placeholder="Username">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="nama">Nama</label>
-                                                    <input type="text" class="form-control" id="nama" name="nama"
-                                                        placeholder="Nama">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="nidn">NIDN</label>
-                                                    <input type="text" class="form-control" id="nidn" name="nidn"
-                                                        placeholder="NIDN">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="exampleFormControlSelect1">Jenis Kelamin</label>
-                                                    <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
-                                                        <option value=""><i>Jenis Kelamin</i></option>
-                                                        <option value="Laki-Laki"><i>Laki-Laki</i></option>
-                                                        <option value="Perempuan"><i>Perempuan</i></option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="tanggal">Tanggal Lahir</label>
-                                                    <input type="date" class="form-control" id="tanggal" name="tanggal"
-                                                        placeholder="Tanggal Lahir">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email">Email</label>
-                                                    <input type="email" class="form-control" id="email" name="email"
-                                                        placeholder="Email">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="passwords">Password</label>
-                                                    <input type="password" class="form-control" id="passwords"
-                                                        name="passwords" placeholder="Password">
-                                                </div>
-                                            </div>
-
+                    <form action="/admin/assesment/{{ $assesment->id }}" method="POST">
+                        @method('put')
+                        @csrf
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="user">Mahasiswa</label>
+                                    <select class="form-control @error('user_id') is-invalid @enderror" name="user_id"
+                                        id="user_id">
+                                        <option value="0">~ Pilih mahasiswa ~</option>
+                                        @foreach ($user as $u)
+                                            @if ($u->role == 'mahasiswa')
+                                                @if (old('user_id') == $u->id)
+                                                    <option value="{{ $u->id }}" selected>{{ $u->nama }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $u->id }}">{{ $u->nama }}</option>
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    @error('user_id')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
                                         </div>
-
+                                    @enderror
                                 </div>
-                                <div class="modal-footer no-bd">
-                                    <button type="submit" class="btn btn-success">Simpan</button>
-                                    </form>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <div class="form-group">
+                                    <label for="nama">Nama Assesment</label>
+                                    <input type="text" name="nama" id="nama" placeholder="nama"
+                                        class="form-control  @error('nama') is-invalid @enderror"
+                                        value="{{ old('nama', $assesment->nama) }}">
+                                    @error('nama')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="skor">Skor</label>
+                                    <input type="number" name="skor" id="skor" placeholder="skor"
+                                        class="form-control @error('skor') is-invalid @enderror"
+                                        value="{{ old('skor', $assesment->skor) }}">
+                                    @error('skor')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="keterangan">Keterangan</label>
+                                    <textarea class="form-control" name="keterangan" id="keterangan" cols="30" rows="10"
+                                        @error('keterangan') is-invalid @enderror">{{  old('keterangan', $assesment->keterangan) }}</textarea>
+                                    @error('keterangan')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {{-- Penutup Modal --}}
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                    </form>
 
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Username</th>
-                                <th>NIDN</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($konselor as $konselor)
-                                <tr>
-                                    <td>{{ $konselor->nama }}</td>
-                                    <td>{{ $konselor->email }}</td>
-                                    <td>{{ $konselor->username }}</td>
-                                    <td>{{ $konselor->nidn }}</td>
-                                    <td>{{ $konselor->tanggal }}</td>
-                                    <td>
-                                        <a href="/admin/konselor/{{ $konselor->id }}/edit"><i
-                                                class="fas fa-edit"></i></a> |
-                                        <form action="/admin/konselor/{{ $konselor->id }}" method="post"
-                                            class="d-inline">
-                                            @method('delete')
-                                            @csrf
-                                            <button class="text-danger bg-transparent border-0"
-                                                onclick="return confirm('Yakin ingin mengahpus?')">
-                                                <i class="fas fa-trash-alt"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Username</th>
-                                <th>NIDN</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
-                    </table>
                 </div>
                 <!-- /.card-body -->
             </div>
