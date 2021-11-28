@@ -19,10 +19,6 @@
         <div class="col-12">
 
             <div class="card">
-                <div class="card-header">
-                    <button class="btn btn-success float-right" data-toggle="modal" data-target="#addRowModal"><i
-                            class="fas fa-plus"></i> Tambah</button>
-                </div>
                 <!-- /.card-header -->
                 <div class="card-body">
 
@@ -30,8 +26,9 @@
                         <thead>
                             <tr>
                                 <th>Nama</th>
-                                <th>Jenis</th>
+                                <th>Assesment</th>
                                 <th>Skor</th>
+                                <th>Keterangan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -39,11 +36,12 @@
                             @foreach ($assesment as $assesment)
                                 <tr>
                                     <td>{{ $assesment->user_id }}</td>
-                                    <td>{{ $assesment->jenis }}</td>
+                                    <td>{{ $assesment->nama }}</td>
                                     <td>{{ $assesment->skor }}</td>
+                                    <td>{{ $assesment->keterangan }}</td>
                                     <td>
-                                        <a href="/admin/assesment/1/edit"><i class="fas fa-edit"></i></a> |
-                                        <form action="/admin/assesment/1" method="post" class="d-inline">
+                                        <a href="/admin/assesment/{{ $assesment->id }}/edit"><i class="fas fa-edit"></i></a> |
+                                        <form action="/admin/assesment/{{ $assesment->id }}" method="post" class="d-inline">
                                             @method('delete')
                                             @csrf
                                             <button class="text-danger bg-transparent border-0"
@@ -57,8 +55,9 @@
                         <tfoot>
                             <tr>
                                 <th>Nama</th>
-                                <th>Jenis</th>
+                                <th>Assesment</th>
                                 <th>Skor</th>
+                                <th>Keterangan</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

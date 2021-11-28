@@ -17,14 +17,14 @@ class DatabaseSeeder extends Seeder
 
         Assesment::create([
             'user_id' => 1,
-            'jenis' => "wajib",
+            'nama' => "wajib",
             'skor' => 2,
             'keterangan' => "tes",
         ]);
 
         Assesment::create([
             'user_id' => 2,
-            'jenis' => "sukarela",
+            'nama' => "sukarela",
             'skor' => 100,
             'keterangan' => "awok",
         ]);

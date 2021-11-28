@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assesment;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AssesmentController extends Controller
@@ -59,7 +60,11 @@ class AssesmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.assesment_e',[
+            "title" => "Assesment Mandiri",
+            "assesment" => Assesment::where('id',$id)->first(),
+            "user" => User::where('id',"1")->get()
+        ]);
     }
 
     /**
@@ -71,7 +76,16 @@ class AssesmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedDate = $request->validate([
+            'user_id' => 'required',
+            'nama'  => 'required',
+            'skor' => 'required',
+            'keterangan' => 'required'
+        ]);
+
+        Assesment::where('id', $id)->update($validatedDate);
+
+        return redirect('/admin/assesment')->with('success','Assesment has been update!');
     }
 
     /**
@@ -82,6 +96,8 @@ class AssesmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Assesment::destroy($id);
+
+        return redirect('/admin/assesment')->with('success','Assesment has been delted!');
     }
 }

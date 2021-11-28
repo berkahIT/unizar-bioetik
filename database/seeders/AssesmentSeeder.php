@@ -20,7 +20,7 @@ class AssesmentSeeder extends Seeder
     {
         Assesment::create([
             'user_id' => Str::random(10),
-            'jenis' => Str::random(10) . '@gmail.com',
+            'nama' => Str::random(10) . '@gmail.com',
             'skor' => Str::random(10) . '@gmail.com',
             'keterangan' => Str::random(10) . '@gmail.com',
         ]);
