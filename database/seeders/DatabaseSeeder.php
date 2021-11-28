@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Assesment;
 use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
@@ -27,6 +28,12 @@ class DatabaseSeeder extends Seeder
             'nama' => "sukarela",
             'skor' => 100,
             'keterangan' => "awok",
+        ]);
+
+        User::create([
+            'name' => "admin",
+            'email' => "admin@gmail.com",
+            'password' => "admin",
         ]);
     }
 }

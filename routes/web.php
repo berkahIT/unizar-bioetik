@@ -43,3 +43,5 @@ Route::resource('/admin/history_assesment', HistoryAssesmentController::class);
 Route::resource('/admin/kritik_saran', KritikSaranController::class);
 
 Route::resource('/admin/konsultasi', KonsultasiController::class);
+
+Route::resource('/admin/artikel', KonsultasiController::class);
