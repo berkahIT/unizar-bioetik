@@ -24,14 +24,14 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-               <!-- Modal -->
+            <!-- Modal -->
             <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header no-bd">
                             <h5 class="modal-title">
                                 <span class="fw-mediumbold">
-                                Tambah</span>
+                                    Tambah</span>
                                 <span class="fw-light">
                                     Mahasiswa
                                 </span>
@@ -41,42 +41,48 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p class="small">Silahkan Masukkan Data mahasiswa</p>
-                            <form action="/mahasiswa" method="POST">
+                            <p class="small">Silahkan Masukkan Data Mahasiswa</p>
+                            <form action="/admin/mahasiswa" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label for="username">Username</label>
-                                            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                                            <input type="text" class="form-control" id="username" name="username"
+                                                placeholder="Username">
                                         </div>
                                         <div class="form-group">
                                             <label for="nama">Nama</label>
-                                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
+                                            <input type="text" class="form-control" id="nama" name="nama"
+                                                placeholder="Nama">
                                         </div>
                                         <div class="form-group">
-                                            <label for="nim">NIDN</label>
-                                            <input type="text" class="form-control" id="nim" name="nim" placeholder="NIDN">
+                                            <label for="nim">nim</label>
+                                            <input type="text" class="form-control" id="nim" name="nim"
+                                                placeholder="nim">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleFormControlSelect1">Jenis Kelamin</label>
-                                            <select class="form-control" id="prodi" name="prodi">
+                                            <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
                                                 <option value=""><i>Jenis Kelamin</i></option>
                                                 <option value="Laki-Laki"><i>Laki-Laki</i></option>
                                                 <option value="Perempuan"><i>Perempuan</i></option>
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="tgl">Tanggal Lahir</label>
-                                            <input type="date" class="form-control" id="tgl" name="tgl" placeholder="Tanggal Lahir">
+                                            <label for="tanggal">Tanggal Lahir</label>
+                                            <input type="date" class="form-control" id="tanggal" name="tanggal"
+                                                placeholder="Tanggal Lahir">
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                placeholder="Email">
                                         </div>
                                         <div class="form-group">
-                                            <label for="passwords">Tanggal Lahir</label>
-                                            <input type="password" class="form-control" id="passwords" name="passwords" placeholder="Password">
+                                            <label for="passwords">Password</label>
+                                            <input type="password" class="form-control" id="passwords"
+                                                name="passwords" placeholder="Password">
                                         </div>
                                     </div>
 
@@ -85,7 +91,7 @@
                         </div>
                         <div class="modal-footer no-bd">
                             <button type="submit" class="btn btn-success">Simpan</button>
-                        </form>
+                            </form>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -94,45 +100,52 @@
             {{-- Penutup Modal --}}
 
             <table id="example1" class="table table-bordered table-striped">
-              <thead>
-              <tr>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Username</th>
-                <th>NIM</th>
-                <th>Tanggal Lahir</th>
-                <th>Action</th>
-              </tr>
-              </thead>
-              <tbody>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <a href="/admin/mahasiswa/1/edit"><i class="fas fa-edit"></i></a> |
-                    <form action="/admin/mahasiswa/1" method="post" class="d-inline">
-                        @method('delete')
-                        @csrf
-                        <button class="text-danger bg-transparent border-0" onclick="return confirm('Yakin ingin mengahpus?')">
-                            <i class="fas fa-trash-alt"></i></button>
-                    </form>
-                </td>
-              </tbody>
-              <tfoot>
-              <tr>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Username</th>
-                <th>NIM</th>
-                <th>Tanggal Lahir</th>
-                <th>Action</th>
-              </tr>
-              </tfoot>
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>NIM</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($mahasiswa as $mahasiswa)
+                        <tr>
+                            <td>{{ $mahasiswa->nama }}</td>
+                            <td>{{ $mahasiswa->email }}</td>
+                            <td>{{ $mahasiswa->username }}</td>
+                            <td>{{ $mahasiswa->nim }}</td>
+                            <td>{{ $mahasiswa->tanggal }}</td>
+                            <td>
+                                <a href="/admin/mahasiswa/{{ $mahasiswa->id }}/edit"><i
+                                        class="fas fa-edit"></i></a> |
+                                <form action="/admin/mahasiswa/{{ $mahasiswa->id }}" method="post"
+                                    class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button class="text-danger bg-transparent border-0"
+                                        onclick="return confirm('Yakin ingin mengahpus?')">
+                                        <i class="fas fa-trash-alt"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>NIM</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
             </table>
-          </div>
-          <!-- /.card-body -->
+        </div>
+        <!-- /.card-body -->
         </div>
         <!-- /.card -->
       </div>

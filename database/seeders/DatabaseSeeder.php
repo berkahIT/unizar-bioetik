@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Assesment;
 use App\Models\Konselor;
+use App\Models\Mahasiswa;
 use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
@@ -53,6 +54,26 @@ class DatabaseSeeder extends Seeder
             'passwords' => "dosen2",
             'nidn' => 321,
             'email' => "dosen2@gmail.com",
+            'jenis_kelamin' => "Perempuan",
+            'tanggal' => '2021/09/22'
+        ]);
+
+        Mahasiswa::create([
+            'nama' => "mahasiswa1",
+            'username' => "mahasiswa1",
+            'passwords' => "mahasiswa1",
+            'nim' => 123,
+            'email' => "mahasiswa@gmail.com",
+            'jenis_kelamin' => "Laki-laki",
+            'tanggal' => '2021/09/22'
+        ]);
+
+        Mahasiswa::create([
+            'nama' => "mahasiswa2",
+            'username' => "mahasiswa2",
+            'passwords' => "mahasiswa2",
+            'nim' => 321,
+            'email' => "mahasiswa2@gmail.com",
             'jenis_kelamin' => "Perempuan",
             'tanggal' => '2021/09/22'
         ]);

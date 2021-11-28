@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+
 
 class MahasiswaController extends Controller
 {
@@ -13,7 +15,9 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        return view('admin.mahasiswa');
+        return view('admin.mahasiswa', [
+            "mahasiswa" => Mahasiswa::all(),
+        ]);
     }
 
     /**
@@ -34,7 +38,19 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedDate = $request->validate([
+            'nama' => 'required',
+            'username' => 'required',
+            'passwords' => 'required',
+            'jenis_kelamin' => 'required',
+            'nim' => 'required',
+            'email' => 'required',
+            'tanggal' => 'required',
+        ]);
+
+        Mahasiswa::create($validatedDate);
+
+        return redirect('/admin/mahasiswa')->with('success', 'New mahasiswa has been addedd!');
     }
 
     /**
@@ -56,7 +72,10 @@ class MahasiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.mahasiswa_e', [
+            "title" => "mahasiswa",
+            "mahasiswa" => Mahasiswa::where('id', $id)->first()
+        ]);
     }
 
     /**
@@ -68,7 +87,19 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedDate = $request->validate([
+            'nama' => 'required',
+            'username' => 'required',
+            'passwords' => 'required',
+            'nim' => 'required',
+            'email' => 'required',
+            'jenis_kelamin' => 'required',
+            'tanggal' => 'required'
+        ]);
+
+        Mahasiswa::where('id', $id)->update($validatedDate);
+
+        return redirect('/admin/mahasiswa')->with('success', 'mahasiswa has been update!');
     }
 
     /**
@@ -79,6 +110,8 @@ class MahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Mahasiswa::destroy($id);
+
+        return redirect('/admin/mahasiswa')->with('success', 'mahasiswa has been delted!');
     }
 }

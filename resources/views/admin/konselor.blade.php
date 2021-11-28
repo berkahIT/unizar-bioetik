@@ -34,7 +34,7 @@
                                         <span class="fw-mediumbold">
                                             Tambah</span>
                                         <span class="fw-light">
-                                            Dosen
+                                            Konselor
                                         </span>
                                     </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
