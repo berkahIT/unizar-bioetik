@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assesment;
+use App\Models\Mahasiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,9 @@ class AssesmentController extends Controller
      */
     public function index()
     {
-        return view('admin.assesment',[
+        return view('admin.assesment', [
             "assesment" => Assesment::all(),
+            "mahasiswa" => Mahasiswa::where('id', "1")->get()
         ]);
     }
 
@@ -60,10 +62,10 @@ class AssesmentController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.assesment_e',[
+        return view('admin.assesment_e', [
             "title" => "Assesment Mandiri",
-            "assesment" => Assesment::where('id',$id)->first(),
-            "user" => User::where('id',"1")->get()
+            "assesment" => Assesment::where('id', $id)->first(),
+            "mahasiswa" => Mahasiswa::where('id', "1")->get()
         ]);
     }
 
@@ -85,7 +87,7 @@ class AssesmentController extends Controller
 
         Assesment::where('id', $id)->update($validatedDate);
 
-        return redirect('/admin/assesment')->with('success','Assesment has been update!');
+        return redirect('/admin/assesment')->with('success', 'Assesment has been update!');
     }
 
     /**
@@ -98,6 +100,6 @@ class AssesmentController extends Controller
     {
         Assesment::destroy($id);
 
-        return redirect('/admin/assesment')->with('success','Assesment has been delted!');
+        return redirect('/admin/assesment')->with('success', 'Assesment has been delted!');
     }
 }

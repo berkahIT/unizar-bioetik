@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Konsultasi;
+use App\Models\Mahasiswa;
 use App\Models\RekamMedik;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class RekamMedikController extends Controller
         return view('admin.rekam_medik', [
             "rekam_medik" => RekamMedik::all(),
             "user" => User::all(),
+            "mahasiswa" => Mahasiswa::all(),
             "konsultasi" => Konsultasi::all(),
         ]);
     }

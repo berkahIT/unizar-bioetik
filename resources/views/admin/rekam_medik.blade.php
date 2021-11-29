@@ -52,7 +52,7 @@
                                                     <select class="form-control @error('user_id') is-invalid @enderror"
                                                         name="user_id" id="user_id" autofocus>
                                                         <option value="1">~ Pilih Mahasiswa ~</option>
-                                                        @foreach ($user as $m)
+                                                        @foreach ($mahasiswa as $m)
                                                             @if (old('user_id') == $m->id)
                                                                 <option value="{{ $m->id }}" selected>
                                                                     {{ $m->nama }}</option>
@@ -136,8 +136,16 @@
                         <tbody>
                             @foreach ($rekam_medik as $rekam_medik)
                                 <tr>
-                                    <td>{{ $rekam_medik->user_id }}</td>
-                                    <td>{{ $rekam_medik->konsultasi_id }}</td>
+                                    @foreach ($mahasiswa as $m)
+                                        @if ($m->id == $rekam_medik->user_id)
+                                            <td>{{ $m->nama }}</td>
+                                        @endif
+                                    @endforeach
+                                    @foreach ($konsultasi as $ko)
+                                        @if ($ko->id == $rekam_medik->konsultasi_id)
+                                            <td>{{ $ko->status }}</td>
+                                        @endif
+                                    @endforeach
                                     <td>{{ $rekam_medik->tanggal }}</td>
                                     <td>{{ $rekam_medik->photo_rekam_medik }}</td>
                                     <td>

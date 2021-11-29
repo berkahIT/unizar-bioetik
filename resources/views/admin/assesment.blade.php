@@ -35,13 +35,19 @@
                         <tbody>
                             @foreach ($assesment as $assesment)
                                 <tr>
-                                    <td>{{ $assesment->user_id }}</td>
+                                    @foreach ($mahasiswa as $m)
+                                        @if ($m->id == $assesment->user_id)
+                                            <td>{{ $m->nama }}</td>
+                                        @endif
+                                    @endforeach
                                     <td>{{ $assesment->nama }}</td>
                                     <td>{{ $assesment->skor }}</td>
                                     <td>{{ $assesment->keterangan }}</td>
                                     <td>
-                                        <a href="/admin/assesment/{{ $assesment->id }}/edit"><i class="fas fa-edit"></i></a> |
-                                        <form action="/admin/assesment/{{ $assesment->id }}" method="post" class="d-inline">
+                                        <a href="/admin/assesment/{{ $assesment->id }}/edit"><i
+                                                class="fas fa-edit"></i></a> |
+                                        <form action="/admin/assesment/{{ $assesment->id }}" method="post"
+                                            class="d-inline">
                                             @method('delete')
                                             @csrf
                                             <button class="text-danger bg-transparent border-0"

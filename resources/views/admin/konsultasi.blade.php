@@ -169,9 +169,21 @@
                         <tbody>
                             @foreach ($konsultasi as $konsultasi)
                                 <tr>
-                                    <td>{{ $konsultasi->mahasiswa_id }}</td>
-                                    <td>{{ $konsultasi->konselor_id }}</td>
-                                    <td>{{ $konsultasi->rekam_medik_id }}</td>
+                                    @foreach ($mahasiswa as $m)
+                                        @if ($m->id == $konsultasi->mahasiswa_id)
+                                            <td>{{ $m->nama }}</td>
+                                        @endif
+                                    @endforeach
+                                    @foreach ($konselor as $ko)
+                                        @if ($ko->id == $konsultasi->konselor_id)
+                                            <td>{{ $ko->nama }}</td>
+                                        @endif
+                                    @endforeach
+                                    @foreach ($rekam_medik as $re)
+                                        @if ($re->id == $konsultasi->rekam_medik_id)
+                                            <td>{{ $re->photo_rekam_medik }}</td>
+                                        @endif
+                                    @endforeach
                                     <td>{{ $konsultasi->jenis_konsultasi }}</td>
                                     <td>{{ $konsultasi->tanggal }}</td>
                                     <td>

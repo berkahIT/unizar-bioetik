@@ -34,7 +34,7 @@
                                     <select class="form-control @error('user_id') is-invalid @enderror" name="user_id"
                                         id="user_id">
                                         <option value="0">~ Pilih mahasiswa ~</option>
-                                        @foreach ($user as $u)
+                                        @foreach ($mahasiswa as $u)
                                             @if ($u->role == 'mahasiswa')
                                                 @if (old('user_id') == $u->id)
                                                     <option value="{{ $u->id }}" selected>{{ $u->nama }}

@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Assesment::create([
-            'user_id' => 2,
+            'user_id' => 1,
             'nama' => "sukarela",
             'skor' => 100,
             'keterangan' => "awok",

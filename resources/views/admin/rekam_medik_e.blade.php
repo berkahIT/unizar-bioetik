@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Konselor</h1>
+                <h1>Rekam Medik</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Konselor</li>
+                    <li class="breadcrumb-item active">Rekam Medik</li>
                 </ol>
             </div>
         </div>
@@ -20,8 +20,8 @@
 
             <div class="card">
                 <div class="card-header">
-                    <button class="btn btn-success float-right" data-toggle="modal" data-target="#addRowModal"><i
-                            class="fas fa-plus"></i> Tambah</button>
+                    <a href="/admin/rekam_medik" class="btn btn-warning float-right"><i class="fas fa-angle-left"></i>
+                        Kembali</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -33,7 +33,7 @@
                             <select class="form-control @error('user_id') is-invalid @enderror" name="user_id" id="user_id"
                                 autofocus>
                                 <option value="1">~ Pilih Mahasiswa ~</option>
-                                @foreach ($user as $u)
+                                @foreach ($mahasiswa as $u)
                                     @if (old('user_id', $u->nama)) == $u->id)
                                         <option value="{{ $u->id }}" selected>{{ $u->nama }}</option>
                                     @else
@@ -83,7 +83,8 @@
                                 placeholder="Photo Rekam Medik"
                                 class="form-control @error('rekam_medik') is-invalid @enderror"
                                 value="{{ old('photo_rekam_medik', $rekam_medik->photo_rekam_medik) }}">
-                            <input type="hidden" name="oldphoto_rekam_medik" value="{{ $rekam_medik->photo_rekam_medik }}">
+                            <input type="hidden" name="oldphoto_rekam_medik"
+                                value="{{ $rekam_medik->photo_rekam_medik }}">
                             <p>*Photo Rekam Medik</p>
                             @error('photo_rekam_medik')
                                 <div class="invalid-feedback">
@@ -92,7 +93,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
                             <button type="reset" class="btn btn-danger">Hapus</button>
                         </div>
                     </form>
