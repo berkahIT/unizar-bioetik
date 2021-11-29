@@ -64,9 +64,22 @@
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
+                                                    <label for="photo_artikel">Photo Artikel</label>
+                                                    <input type="file" name="photo_artikel" id="photo_artikel"
+                                                        placeholder="Photo Artikel"
+                                                        class="form-control @error('photo_artikel') is-invalid @enderror"
+                                                        value="{{ old('photo_artikel') }}">
+                                                    <p>*Photo Artikel</p>
+                                                    @error('photo_artikel')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="is_show">Status</label>
                                                     <select class="form-control" id="is_show" name="is_show">
-                                                        <option value="1"><i>Status</i></option>
+                                                        <option value=""><i>Status</i></option>
                                                         <option value="true"><i>Tampilkan</i></option>
                                                         <option value="false"><i>Tidak</i></option>
                                                     </select>
@@ -91,6 +104,7 @@
                             <tr>
                                 <th>Judul</th>
                                 <th>Isi</th>
+                                <th>Photo</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -99,6 +113,7 @@
                                 <tr>
                                     <td>{{ $artikel->judul }}</td>
                                     <td>{{ $artikel->isi }}</td>
+                                    <td>{{ $artikel->photo_artikel }}</td>
                                     <td>
                                         <a href="/admin/artikel/{{ $artikel->id }}/edit"><i
                                                 class="fas fa-edit"></i></a> |
@@ -118,6 +133,7 @@
                             <tr>
                                 <th>Judul</th>
                                 <th>Isi</th>
+                                <th>Photo</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

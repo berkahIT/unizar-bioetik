@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bioetik;
 use Illuminate\Http\Request;
 
 class BioetikController extends Controller
@@ -13,7 +14,9 @@ class BioetikController extends Controller
      */
     public function index()
     {
-        return view('admin.bioetik');
+        return view('admin.bioetik', [
+            "bioetik" => Bioetik::all(),
+        ]);
     }
 
     /**
@@ -79,6 +82,8 @@ class BioetikController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Bioetik::destroy($id);
+
+        return redirect('/admin/bioetik')->with('success', 'Bioetik has been delted!');
     }
 }

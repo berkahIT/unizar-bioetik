@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Assesment;
+use App\Models\Bioetik;
 use App\Models\KritikSaran;
 use Illuminate\Database\Seeder;
 
@@ -66,6 +67,13 @@ class DatabaseSeeder extends Seeder
 
         KritikSaran::create([
             'kritik_saran' => "lorem asdkflj"
+        ]);
+
+        Bioetik::create([
+            'name' => "masalah 1",
+            'nim' => 123123,
+            'masalah' => "hai saya punya masalah",
+            'status' => true,
         ]);
     }
 }

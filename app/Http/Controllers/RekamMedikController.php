@@ -19,8 +19,8 @@ class RekamMedikController extends Controller
     {
         return view('admin.rekam_medik', [
             "rekam_medik" => RekamMedik::all(),
-            "user" => User::all(),
-            "mahasiswa" => User::all(),
+            "mahasiswa" => User::where('role', "mahasiswa")->get(),
+            "konselor" => User::where('role', "konselor")->get(),
             "konsultasi" => Konsultasi::all(),
         ]);
     }
@@ -46,8 +46,8 @@ class RekamMedikController extends Controller
         $validatedDate = $request->validate([
             'user_id' => 'required',
             'konsultasi_id' => 'required',
-            'photo_rekam_medik' => 'file|required',
-            'tanggal' => 'required'
+            'tanggal' => 'required',
+            'photo_rekam_medik' => 'file|required'
         ]);
 
         if ($request->file('photo_rekam_medik')) {
@@ -83,7 +83,8 @@ class RekamMedikController extends Controller
         return view('admin.rekam_medik_e', [
             "title" => "rekam_medik",
             "rekam_medik" => RekamMedik::where('id', $id)->first(),
-            "user" => User::all(),
+            "mahasiswa" => User::where('role', "mahasiswa")->get(),
+            "konselor" => User::where('role', "konselor")->get(),
             "konsultasi" => Konsultasi::all(),
         ]);
     }
@@ -100,7 +101,6 @@ class RekamMedikController extends Controller
         $validatedDate = $request->validate([
             'user_id' => 'required',
             'konsultasi_id' => 'required',
-            'photo_rekam_medik' => 'file|required',
             'tanggal' => 'required'
         ]);
 

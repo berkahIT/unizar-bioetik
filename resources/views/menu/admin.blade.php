@@ -48,9 +48,10 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="/admin/bioetik" class="nav-link {{ Request::is('admin/bioetik*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-file-medical-alt"></i>
-                        <p>Lapor Bioetik
+                    <a href="/admin/konsultasi"
+                        class="nav-link {{ Request::is('admin/konsultasi*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-hand-holding-heart"></i>
+                        <p>Konsultasi
                         </p>
                     </a>
                 </li>
@@ -64,29 +65,10 @@
                     </a>
                 </li>
 
-                {{-- <li class="nav-item">
-                    <a href="/admin/history_assesment"
-                        class="nav-link {{ Request::is('admin/history_assesment*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-history"></i>
-                        <p>History Assesment
-                        </p>
-                    </a>
-                </li> --}}
-
                 <li class="nav-item">
-                    <a href="/admin/kritik_saran"
-                        class="nav-link {{ Request::is('admin/kritik_saran*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-list-alt"></i>
-                        <p>Kritik & Saran
-                        </p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/admin/konsultasi"
-                        class="nav-link {{ Request::is('admin/konsultasi*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-hand-holding-heart"></i>
-                        <p>Konsultasi
+                    <a href="/admin/bioetik" class="nav-link {{ Request::is('admin/bioetik*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-file-medical-alt"></i>
+                        <p>Lapor Bioetik
                         </p>
                     </a>
                 </li>
@@ -95,6 +77,15 @@
                     <a href="/admin/artikel" class="nav-link {{ Request::is('admin/artikel*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-newspaper"></i>
                         <p>Artikel
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/admin/kritik_saran"
+                        class="nav-link {{ Request::is('admin/kritik_saran*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-list-alt"></i>
+                        <p>Kritik & Saran
                         </p>
                     </a>
                 </li>

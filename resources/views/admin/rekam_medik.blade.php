@@ -55,10 +55,10 @@
                                                         @foreach ($mahasiswa as $m)
                                                             @if (old('user_id') == $m->id)
                                                                 <option value="{{ $m->id }}" selected>
-                                                                    {{ $m->nama }}</option>
+                                                                    {{ $m->name }}</option>
                                                             @else
                                                                 <option value="{{ $m->id }}">
-                                                                    {{ $m->nama }}</option>
+                                                                    {{ $m->name }}</option>
                                                             @endif
                                                         @endforeach
                                                     </select>

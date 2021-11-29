@@ -25,7 +25,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form action="/admin/artikel/{{ $artikel->id }}" method="POST">
+                    <form action="/admin/artikel/{{ $artikel->id }}" method="POST" enctype="multipart/form-data">
                         @method('put')
                         @csrf
                         <div class="row">
@@ -41,6 +41,21 @@
                                     <textarea name="isi" id="isi" cols="30" rows="10"
                                         class="form-control @error('isi') is-invalid @enderror">{{ old('isi', $artikel->isi) }}</textarea>
                                     @error('isi')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="photo_artikel">Photo Artikel</label>
+                                    <input type="file" name="photo_artikel" id="photo_artikel" placeholder="Photo Artikel"
+                                        class="form-control @error('photo_artikel') is-invalid @enderror"
+                                        value="{{ old('photo_artikel') }}">
+                                    <input type="hidden" name="oldphoto_artikel"
+                                        value="{{ $artikel->photo_artikel }}">
+                                    <p>*Photo Artikel</p>
+
+                                    @error('photo_artikel')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>

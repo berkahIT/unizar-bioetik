@@ -51,14 +51,14 @@
                                                     <label for="nama">Nama Mahasiswa</label>
                                                     <select class="form-control @error('mahasiswa_id') is-invalid @enderror"
                                                         name="mahasiswa_id" id="mahasiswa_id" autofocus>
-                                                        <option value="1">~ Pilih Mahasiswa ~</option>
+                                                        <option value="">~ Pilih Mahasiswa ~</option>
                                                         @foreach ($mahasiswa as $m)
                                                             @if (old('mahasiswa_id') == $m->id)
                                                                 <option value="{{ $m->id }}" selected>
-                                                                    {{ $m->nama }}</option>
+                                                                    {{ $m->name }}</option>
                                                             @else
                                                                 <option value="{{ $m->id }}">
-                                                                    {{ $m->nama }}</option>
+                                                                    {{ $m->name }}</option>
                                                             @endif
                                                         @endforeach
                                                     </select>
@@ -72,14 +72,14 @@
                                                     <label for="nama">Nama Konselor</label>
                                                     <select class="form-control @error('konselor_id') is-invalid @enderror"
                                                         name="konselor_id" id="konselor_id" autofocus>
-                                                        <option value="1">~ Pilih konselor ~</option>
+                                                        <option value="">~ Pilih konselor ~</option>
                                                         @foreach ($konselor as $k)
                                                             @if (old('konselor_id') == $k->id)
                                                                 <option value="{{ $k->id }}" selected>
-                                                                    {{ $k->nama }}</option>
+                                                                    {{ $k->name }}</option>
                                                             @else
                                                                 <option value="{{ $k->id }}">
-                                                                    {{ $k->nama }}</option>
+                                                                    {{ $k->name }}</option>
                                                             @endif
                                                         @endforeach
                                                     </select>

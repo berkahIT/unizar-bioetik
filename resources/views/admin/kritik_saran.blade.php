@@ -26,7 +26,6 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Tanggal</th>
                                 <th>Kritik & Saran</th>
                                 <th>Action</th>
                             </tr>
@@ -34,7 +33,6 @@
                         <tbody>
                             @foreach ($kritik_saran as $kritik_saran)
                                 <tr>
-                                    <td>{{ $kritik_saran->tanggal }}</td>
                                     <td>{{ $kritik_saran->kritik_saran }}</td>
                                     <td>
                                         <form action="/admin/kritik_saran/{{ $kritik_saran->id }}" method="post"
@@ -51,7 +49,6 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Tanggal</th>
                                 <th>Kritik & Saran</th>
                                 <th>Action</th>
                             </tr>

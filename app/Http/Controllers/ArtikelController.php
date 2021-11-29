@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Artikel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ArtikelController extends Controller
 {
@@ -40,8 +41,15 @@ class ArtikelController extends Controller
         $validatedDate = $request->validate([
             'judul' => 'required',
             'isi' => 'required',
-            'is_show' => 'required'
+            'is_show' => 'required',
+            'photo_artikel' => 'file|required'
         ]);
+
+        if ($request->file('photo_artikel')) {
+            $validatedDate['photo_artikel'] = $request->file('photo_artikel')->store('/public/photo_artikel');
+        } else {
+            echo "gagal";
+        }
 
         Artikel::create($validatedDate);
 
@@ -88,6 +96,14 @@ class ArtikelController extends Controller
             'is_show' => 'required'
         ]);
 
+        if ($request->file('photo_artikel')) {
+
+            if ($request->oldphoto_artikel) {
+                Storage::delete($request->oldphoto_artikel);
+            }
+            $validatedDate['photo_artikel'] = $request->file('photo_artikel')->store('/public/photo_artikel');
+        }
+
         Artikel::where('id', $id)->update($validatedDate);
 
         return redirect('/admin/artikel ')->with('success', 'Artikel has been update!');
@@ -101,6 +117,11 @@ class ArtikelController extends Controller
      */
     public function destroy($id)
     {
+        $data = Artikel::where('id', $id)->first()->photo_artikel;
+        if ($data) {
+            Storage::delete($data);
+        }
+
         Artikel::destroy($id);
 
         return redirect('/admin/artikel ')->with('success', 'Artikel has been delted!');

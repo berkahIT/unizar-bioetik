@@ -31,18 +31,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <form action="/admin/bioetik/1" method="post" class="d-inline">
-                                    @method('delete')
-                                    @csrf
-                                    <button class="text-danger bg-transparent border-0"
-                                        onclick="return confirm('Yakin ingin mengahpus?')">
-                                        <i class="fas fa-trash-alt"></i></button>
-                                </form>
-                            </td>
+                            @foreach ($bioetik as $bioetik)
+                                <tr>
+                                    <td>{{ $bioetik->name }}</td>
+                                    <td>{{ $bioetik->nim }}</td>
+                                    <td>{{ $bioetik->masalah }}</td>
+                                    <td>
+                                        <form action="/admin/bioetik/{{ $bioetik->id }}" method="post"
+                                            class="d-inline">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="text-danger bg-transparent border-0"
+                                                onclick="return confirm('Yakin ingin mengahpus?')">
+                                                <i class="fas fa-trash-alt"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                         <tfoot>
                             <tr>

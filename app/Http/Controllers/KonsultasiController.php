@@ -18,8 +18,8 @@ class KonsultasiController extends Controller
     {
         return view('admin.konsultasi ', [
             "konsultasi" => Konsultasi::all(),
-            "mahasiswa" => User::all(),
-            "konselor" => User::all(),
+            "mahasiswa" => User::where('role', "mahasiswa")->get(),
+            "konselor" => User::where('role', "konselor")->get(),
             "rekam_medik" => RekamMedik::all(),
         ]);
     }
@@ -79,8 +79,8 @@ class KonsultasiController extends Controller
         return view('admin.konsultasi_e', [
             "title" => "konsultasi",
             "konsultasi" => Konsultasi::where('id', $id)->first(),
-            "mahasiswa" => User::all(),
-            "konselor" => User::all(),
+            "mahasiswa" => User::where('role', "mahasiswa")->get(),
+            "konselor" => User::where('role', "konselor")->get(),
             "rekam_medik" => RekamMedik::all(),
         ]);
     }
