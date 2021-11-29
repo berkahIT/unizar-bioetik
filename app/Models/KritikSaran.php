@@ -10,7 +10,6 @@ class KritikSaran extends Model
     use HasFactory;
 
     protected $fillable = [
-        'kritik_saran',
-        'tanggal'
+        'kritik_saran'
     ];
 }

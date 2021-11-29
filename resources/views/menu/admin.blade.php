@@ -26,7 +26,7 @@
                 <li class="nav-item">
                     <a href="/admin/assesment" class="nav-link {{ Request::is('admin/assesment*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tasks"></i>
-                        <p>Assesment Mandiri
+                        <p>Log Assesment
                         </p>
                     </a>
                 </li>

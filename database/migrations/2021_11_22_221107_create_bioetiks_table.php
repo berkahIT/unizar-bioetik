@@ -15,6 +15,10 @@ class CreateBioetiksTable extends Migration
     {
         Schema::create('bioetiks', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('nim');
+            $table->text('masalah');
+            $table->string('status');
             $table->timestamps();
         });
     }

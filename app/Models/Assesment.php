@@ -11,7 +11,7 @@ class Assesment extends Model
 
     protected $fillable = [
         'user_id',
-        'nama',
+        'name_assesment',
         'skor',
         'keterangan'
     ];

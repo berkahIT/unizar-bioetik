@@ -16,7 +16,7 @@ class CreateAssesmentsTable extends Migration
         Schema::create('assesments', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('nama');
+            $table->string('name_assesment');
             $table->integer('skor');
             $table->text('keterangan');
             $table->timestamps();

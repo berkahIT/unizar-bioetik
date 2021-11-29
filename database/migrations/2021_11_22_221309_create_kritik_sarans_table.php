@@ -15,8 +15,7 @@ class CreateKritikSaransTable extends Migration
     {
         Schema::create('kritik_sarans', function (Blueprint $table) {
             $table->id();
-            $table->string('kritik_saran');
-            $table->timestamp('tanggal')->default(now());
+            $table->text('kritik_saran');
             $table->timestamps();
         });
     }

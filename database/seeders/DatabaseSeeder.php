@@ -8,6 +8,7 @@ use App\Models\Konselor;
 use App\Models\KritikSaran;
 use App\Models\Mahasiswa;
 use Illuminate\Database\Seeder;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -21,14 +22,14 @@ class DatabaseSeeder extends Seeder
 
         Assesment::create([
             'user_id' => 1,
-            'nama' => "wajib",
+            'name_assesment' => "keluhan1",
             'skor' => 2,
             'keterangan' => "tes",
         ]);
 
         Assesment::create([
             'user_id' => 1,
-            'nama' => "sukarela",
+            'name_assesment' => "keluhan2",
             'skor' => 100,
             'keterangan' => "awok",
         ]);
@@ -37,51 +38,34 @@ class DatabaseSeeder extends Seeder
             'name' => "admin",
             'email' => "admin@gmail.com",
             'password' => "admin",
-        ]);
-
-        Konselor::create([
-            'nama' => "dosen1",
-            'username' => "dosen1",
-            'passwords' => "dosen1",
-            'nidn' => 123,
-            'email' => "dosen@gmail.com",
-            'jenis_kelamin' => "Laki-laki",
-            'tanggal' => '2021/09/22'
-        ]);
-
-        Konselor::create([
-            'nama' => "dosen2",
-            'username' => "dosen2",
-            'passwords' => "dosen2",
-            'nidn' => 321,
-            'email' => "dosen2@gmail.com",
-            'jenis_kelamin' => "Perempuan",
-            'tanggal' => '2021/09/22'
-        ]);
-
-        Mahasiswa::create([
-            'nama' => "mahasiswa1",
-            'username' => "mahasiswa1",
-            'passwords' => "mahasiswa1",
+            'username' => "admin",
             'nim' => 123,
-            'email' => "mahasiswa@gmail.com",
             'jenis_kelamin' => "Laki-laki",
-            'tanggal' => '2021/09/22'
+            'alamat' => "selong",
+            'tanggal_lahir' => '2021/09/22',
+            'spesialis' => "psikolog",
+            'detail' => "saya psikolog",
+            'role' => "konselor",
+            'profile_photo_path' => "konselor",
         ]);
 
-        Mahasiswa::create([
-            'nama' => "mahasiswa2",
-            'username' => "mahasiswa2",
-            'passwords' => "mahasiswa2",
-            'nim' => 321,
-            'email' => "mahasiswa2@gmail.com",
-            'jenis_kelamin' => "Perempuan",
-            'tanggal' => '2021/09/22'
+        User::create([
+            'name' => "mahasiswa",
+            'email' => "mahasiswa@gmail.com",
+            'password' => "mahasiswa",
+            'username' => "mahasiswa",
+            'nim' => 123,
+            'jenis_kelamin' => "Laki-laki",
+            'alamat' => "selong",
+            'tanggal_lahir' => '2021/09/22',
+            'spesialis' => "-",
+            'detail' => "-",
+            'role' => "mahasiswa",
+            'profile_photo_path' => "mahasiswa",
         ]);
 
         KritikSaran::create([
-            'kritik_saran' => "lorem asdkflj",
-            'tanggal' => '2021/09/22'
+            'kritik_saran' => "lorem asdkflj"
         ]);
     }
 }
