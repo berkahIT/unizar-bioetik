@@ -19,26 +19,86 @@
         <div class="col-12">
 
             <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-success float-right" data-toggle="modal" data-target="#addRowModal"><i
+                            class="fas fa-plus"></i> Tambah</button>
+                </div>
                 <!-- /.card-header -->
                 <div class="card-body">
+                    <!-- Modal -->
+                    <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header no-bd">
+                                    <h5 class="modal-title">
+                                        <span class="fw-mediumbold">
+                                            Tambah</span>
+                                        <span class="fw-light">
+                                            Artikel
+                                        </span>
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="small">Silahkan Masukkan Data Artikel</p>
+                                    <form action="/admin/artikel" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="judul">Judul</label>
+                                                    <input type="Text" id="judul" name="judul" placeholder="Judul"
+                                                        class="form-control @error('judul') is-invalid @enderror"
+                                                        value="{{ old('judul') }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="isi">Isi</label>
+                                                    <textarea name="isi" id="isi" cols="30" rows="10"
+                                                        class="form-control @error('isi') is-invalid @enderror">{{ old('isi') }}</textarea>
+                                                    @error('isi')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="is_show">Status</label>
+                                                    <select class="form-control" id="is_show" name="is_show">
+                                                        <option value="1"><i>Status</i></option>
+                                                        <option value="true"><i>Tampilkan</i></option>
+                                                        <option value="false"><i>Tidak</i></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                </div>
+                                <div class="modal-footer no-bd">
+                                    <button type="submit" class="btn btn-success">Simpan</button>
+                                    </form>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Penutup Modal --}}
 
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Nama</th>
-                                <th>Artikel</th>
-                                <th>Skor</th>
-                                <th>Keterangan</th>
+                                <th>Judul</th>
+                                <th>Isi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($artikel as $artikel)
                                 <tr>
-                                    <td>{{ $artikel->user_id }}</td>
-                                    <td>{{ $artikel->nama }}</td>
-                                    <td>{{ $artikel->skor }}</td>
-                                    <td>{{ $artikel->keterangan }}</td>
+                                    <td>{{ $artikel->judul }}</td>
+                                    <td>{{ $artikel->isi }}</td>
                                     <td>
                                         <a href="/admin/artikel/{{ $artikel->id }}/edit"><i
                                                 class="fas fa-edit"></i></a> |
@@ -56,10 +116,8 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Nama</th>
-                                <th>artikel</th>
-                                <th>Skor</th>
-                                <th>Keterangan</th>
+                                <th>Judul</th>
+                                <th>Isi</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

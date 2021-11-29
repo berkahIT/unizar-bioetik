@@ -12,6 +12,7 @@ class Konsultasi extends Model
     protected $fillable = [
         'mahasiswa_id',
         'konselor_id',
+        'rekam_medik',
         'rekam_medik_id',
         'tanggal',
         'jenis_konsultasi',

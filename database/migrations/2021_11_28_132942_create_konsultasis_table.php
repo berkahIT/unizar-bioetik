@@ -15,6 +15,13 @@ class CreateKonsultasisTable extends Migration
     {
         Schema::create('konsultasis', function (Blueprint $table) {
             $table->id();
+            $table->integer('mahasiswa_id');
+            $table->integer('konselor_id');
+            $table->string('rekam_medik');
+            $table->integer('rekam_medik_id');
+            $table->string('jenis_konsultasi');
+            $table->string('status');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

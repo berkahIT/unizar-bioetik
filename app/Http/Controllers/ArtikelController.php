@@ -14,7 +14,7 @@ class ArtikelController extends Controller
      */
     public function index()
     {
-        return view('admin.artikel',[
+        return view('admin.artikel', [
             "artikel" => Artikel::all(),
         ]);
     }
@@ -37,16 +37,24 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedDate = $request->validate([
+            'judul' => 'required',
+            'isi' => 'required',
+            'is_show' => 'required'
+        ]);
+
+        Artikel::create($validatedDate);
+
+        return redirect('/admin/artikel ')->with('success', 'New Artikel has been addedd!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Artikel  $artikel
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Artikel $artikel)
+    public function show($id)
     {
         //
     }
@@ -54,34 +62,47 @@ class ArtikelController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Artikel  $artikel
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Artikel $artikel)
+    public function edit($id)
     {
-        //
+        return view('admin.artikel_e', [
+            "title" => "artikel",
+            "artikel" => Artikel::where('id', $id)->first()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Artikel  $artikel
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Artikel $artikel)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedDate = $request->validate([
+            'judul' => 'required',
+            'isi' => 'required',
+            'is_show' => 'required'
+        ]);
+
+        Artikel::where('id', $id)->update($validatedDate);
+
+        return redirect('/admin/artikel ')->with('success', 'Artikel has been update!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Artikel  $artikel
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Artikel $artikel)
+    public function destroy($id)
     {
-        //
+        Artikel::destroy($id);
+
+        return redirect('/admin/artikel ')->with('success', 'Artikel has been delted!');
     }
 }

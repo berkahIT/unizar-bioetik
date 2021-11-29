@@ -48,45 +48,100 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group">
-                                                    <label for="username">Username</label>
-                                                    <input type="text" class="form-control" id="username" name="username"
-                                                        placeholder="Username">
+                                                    <label for="nama">Nama Mahasiswa</label>
+                                                    <select class="form-control @error('mahasiswa_id') is-invalid @enderror"
+                                                        name="mahasiswa_id" id="mahasiswa_id" autofocus>
+                                                        <option value="1">~ Pilih Mahasiswa ~</option>
+                                                        @foreach ($mahasiswa as $m)
+                                                            @if (old('mahasiswa_id') == $m->id)
+                                                                <option value="{{ $m->id }}" selected>
+                                                                    {{ $m->nama }}</option>
+                                                            @else
+                                                                <option value="{{ $m->id }}">
+                                                                    {{ $m->nama }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                    @error('mahasiswa_id')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="nama">Nama</label>
-                                                    <input type="text" class="form-control" id="nama" name="nama"
-                                                        placeholder="Nama">
+                                                    <label for="nama">Nama Konselor</label>
+                                                    <select class="form-control @error('konselor_id') is-invalid @enderror"
+                                                        name="konselor_id" id="konselor_id" autofocus>
+                                                        <option value="1">~ Pilih konselor ~</option>
+                                                        @foreach ($konselor as $k)
+                                                            @if (old('konselor_id') == $k->id)
+                                                                <option value="{{ $k->id }}" selected>
+                                                                    {{ $k->nama }}</option>
+                                                            @else
+                                                                <option value="{{ $k->id }}">
+                                                                    {{ $k->nama }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                    @error('matkul_id')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="nidn">NIDN</label>
-                                                    <input type="text" class="form-control" id="nidn" name="nidn"
-                                                        placeholder="NIDN">
+                                                    <label for="tanggal">Tanggal</label>
+                                                    <input type="date" class="form-control" id="tanggal" name="tanggal"
+                                                        placeholder="Tanggal">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="exampleFormControlSelect1">Jenis Kelamin</label>
-                                                    <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
-                                                        <option value=""><i>Jenis Kelamin</i></option>
-                                                        <option value="Laki-Laki"><i>Laki-Laki</i></option>
-                                                        <option value="Perempuan"><i>Perempuan</i></option>
+                                                    <label for="exampleFormControlSelect1">Status Rekam Medik</label>
+                                                    <select class="form-control" id="rekam_medik" name="rekam_medik">
+                                                        <option value=""><i>Rekam Medik</i></option>
+                                                        <option value="true"><i>Ada</i></option>
+                                                        <option value="false"><i>Tidak Ada</i></option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="tgl">Tanggal Lahir</label>
-                                                    <input type="date" class="form-control" id="tgl" name="tgl"
-                                                        placeholder="Tanggal Lahir">
+                                                    <label for="rekam_medik_id">Rekam Medik</label>
+                                                    <select
+                                                        class="form-control @error('rekam_medik_id') is-invalid @enderror"
+                                                        name="rekam_medik_id" id="rekam_medik_id" autofocus>
+                                                        <option value="1">~ Pilih Rekam Medik ~</option>
+                                                        @foreach ($rekam_medik as $r)
+                                                            @if (old('konsultasi_id') == $r->id)
+                                                                <option value="{{ $r->id }}" selected>
+                                                                    {{ $r->nama }}</option>
+                                                            @else
+                                                                <option value="{{ $r->id }}">
+                                                                    {{ $r->nama }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                    @error('rekam_medik_id')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="email">Email</label>
-                                                    <input type="email" class="form-control" id="email" name="email"
-                                                        placeholder="Email">
+                                                    <label for="jenis_konsultasi">Jenis Konsultasi</label>
+                                                    <select class="form-control" id="jenis_konsultasi"
+                                                        name="jenis_konsultasi">
+                                                        <option value=""><i>Konsultasi</i></option>
+                                                        <option value="wajib"><i>Wajib</i></option>
+                                                        <option value="relawan"><i>Relawan</i></option>
+                                                    </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="passwords">Password</label>
-                                                    <input type="password" class="form-control" id="passwords"
-                                                        name="passwords" placeholder="Password">
+                                                    <label for="status">Status</label>
+                                                    <select class="form-control" id="status" name="status">
+                                                        <option value=""><i>Status</i></option>
+                                                        <option value="true"><i>Ada</i></option>
+                                                        <option value="false"><i>Tidak Ada</i></option>
+                                                    </select>
                                                 </div>
                                             </div>
-
                                         </div>
 
                                 </div>
@@ -103,22 +158,22 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Username</th>
-                                <th>NIDN</th>
-                                <th>Tanggal Lahir</th>
+                                <th>Mahasiswa</th>
+                                <th>Konselor</th>
+                                <th>Rekam Medik</th>
+                                <th>Jenis Konsultasi</th>
+                                <th>Tanggal</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($konsultasi as $konsultasi)
                                 <tr>
-                                    <td>{{ $konsultasi->nama }}</td>
-                                    <td>{{ $konsultasi->email }}</td>
-                                    <td>{{ $konsultasi->username }}</td>
-                                    <td>{{ $konsultasi->nidn }}</td>
-                                    <td>{{ $konsultasi->tgl }}</td>
+                                    <td>{{ $konsultasi->mahasiswa_id }}</td>
+                                    <td>{{ $konsultasi->konselor_id }}</td>
+                                    <td>{{ $konsultasi->rekam_medik_id }}</td>
+                                    <td>{{ $konsultasi->jenis_konsultasi }}</td>
+                                    <td>{{ $konsultasi->tanggal }}</td>
                                     <td>
                                         <a href="/admin/konsultasi/{{ $konsultasi->id }}/edit"><i
                                                 class="fas fa-edit"></i></a> |

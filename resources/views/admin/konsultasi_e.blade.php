@@ -20,90 +20,151 @@
 
             <div class="card">
                 <div class="card-header">
-                    <a href="/admin/konselor" class="btn btn-warning float-right"><i class="fas fa-angle-left"></i>
+                    <a href="/admin/konsultasi" class="btn btn-warning float-right"><i class="fas fa-angle-left"></i>
                         Kembali</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form action="/konsultasi" method="POST">
+                    <form action="/admin/konsultasi/{{ $konsultasi->id }}" method="POST">
+                        @method('put')
                         @csrf
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label for="username">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username"
-                                        placeholder="Username" @error('username') is-invalid @enderror"
-                                        value="{{ old('username', $assesment->username) }}">
-                                    @error('username')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nama">Nama</label>
-                                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama"
-                                        @error('nama') is-invalid @enderror" value="{{ old('nama', $assesment->nama) }}">
-                                    @error('nama')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nim">NIDN</label>
-                                    <input type="text" class="form-control" id="nim" name="nim" placeholder="NIDN"
-                                        @error('nidn') is-invalid @enderror" value="{{ old('nidn', $assesment->nidn) }}">
-                                    @error('nidn')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Jenis Kelamin</label>
-                                    <select class="form-control" id="prodi" name="prodi">
-                                        <option value=""><i>Jenis Kelamin</i></option>
-                                        <option value="Laki-Laki"><i>Laki-Laki</i></option>
-                                        <option value="Perempuan"><i>Perempuan</i></option>
+                                    <label for="nama">Nama Mahasiswa</label>
+                                    <select class="form-control @error('mahasiswa_id') is-invalid @enderror"
+                                        name="mahasiswa_id" id="mahasiswa_id" autofocus>
+                                        <option value="1">~ Pilih Mahasiswa ~</option>
+                                        @foreach ($mahasiswa as $m)
+                                            @if (old('mahasiswa_id') == $m->id)
+                                                <option value="{{ $m->id }}" selected>
+                                                    {{ $m->nama }}</option>
+                                            @else
+                                                <option value="{{ $m->id }}">
+                                                    {{ $m->nama }}</option>
+                                            @endif
+                                        @endforeach
                                     </select>
+                                    @error('mahasiswa_id')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="tanggal">Tanggal Lahir</label>
-                                    <input type="date" class="form-control" id="tanggal" name="tanggal"
-                                        placeholder="Tanggal Lahir" @error('tanggal') is-invalid @enderror"
-                                        value="{{ old('tanggal', $assesment->tanggal) }}">
+                                    <label for="nama">Nama Konselor</label>
+                                    <select class="form-control @error('konselor_id') is-invalid @enderror"
+                                        name="konselor_id" id="konselor_id" autofocus>
+                                        <option value="1">~ Pilih konselor ~</option>
+                                        @foreach ($konselor as $k)
+                                            @if (old('konselor_id') == $k->id)
+                                                <option value="{{ $k->id }}" selected>
+                                                    {{ $k->nama }}</option>
+                                            @else
+                                                <option value="{{ $k->id }}">
+                                                    {{ $k->nama }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    @error('matkul_id')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="tanggal">Tanggal</label>
+                                    <input type="date" name="tanggal" id="tanggal" placeholder="Tanggal"
+                                        class="form-control  @error('tanggal') is-invalid @enderror"
+                                        value="{{ old('tanggal', $konsultasi->tanggal) }}">
                                     @error('tanggal')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
-                                    @enderror>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email"
-                                        @error('email') is-invalid @enderror" value="{{ old('email', $assesment->email) }}">
-                                    @error('email')
+                                    <label for="rekam_medik">Status Rekam Medik</label>
+                                    <select class="form-control @error('rekam_medik') is-invalid @enderror"
+                                        name="rekam_medik" id="rekam_medik" autofocus>
+                                        <option value="1">~ Status Rekam Medik ~</option>
+                                        @if (old('konsultasi_id') == $konsultasi->id)
+                                            <option value="{{ $konsultasi->status }}" selected>
+                                                {{ $konsultasi->rekam_medik }}</option>
+                                        @else
+                                            <option value="{{ $konsultasi->status }}">
+                                                {{ $konsultasi->rekam_medik }}</option>
+                                        @endif
+                                    </select>
+                                    @error('rekam_medik')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
-                                    @enderror>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="passwords">Password</label>
-                                    <input type="password" class="form-control" id="passwords" name="passwords"
-                                        placeholder="Password" @error('passwords') is-invalid @enderror"
-                                        value="{{ old('passwords', $konseler->passwords) }}">
-                                    @error('passwords')
+                                    <label for="rekam_medik_id">Rekam Medik</label>
+                                    <select class="form-control @error('rekam_medik_id') is-invalid @enderror"
+                                        name="rekam_medik_id" id="rekam_medik_id" autofocus>
+                                        <option value="1">~ Pilih Rekam Medik ~</option>
+                                        @foreach ($rekam_medik as $r)
+                                            @if (old('konsultasi_id') == $r->id)
+                                                <option value="{{ $r->id }}" selected>
+                                                    {{ $r->nama }}</option>
+                                            @else
+                                                <option value="{{ $r->id }}">
+                                                    {{ $r->nama }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    @error('rekam_medik_id')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
-                                    @enderror>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="jenis_konsultasi">Jenis Konsultasi</label>
+                                    <select class="form-control @error('jenis_konsultasi') is-invalid @enderror"
+                                        name="jenis_konsultasi" id="jenis_konsultasi" autofocus>
+                                        <option value="1">~ Jenis Konsultasi ~</option>
+                                        @if (old('konsultasi_id') == $konsultasi->id)
+                                            <option value="{{ $konsultasi->jenis_konsultasi }}" selected>
+                                                {{ $konsultasi->jenis_konsultasi }}</option>
+                                        @else
+                                            <option value="{{ $konsultasi->jenis_konsultasi }}">
+                                                {{ $konsultasi->jenis_konsultasi }}</option>
+                                        @endif
+                                    </select>
+                                    @error('jenis_konsultasi')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select class="form-control @error('status') is-invalid @enderror"
+                                        name="status" id="status" autofocus>
+                                        <option value="1">~ Status ~</option>
+                                        @if (old('konsultasi_id') == $konsultasi->id)
+                                            <option value="{{ $konsultasi->status }}" selected>
+                                                {{ $konsultasi->status }}</option>
+                                        @else
+                                            <option value="{{ $konsultasi->status }}">
+                                                {{ $konsultasi->status }}</option>
+                                        @endif
+                                    </select>
+                                    @error('status')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success">Simpan</button>
-                        <button type="reset" class="btn btn-success">Reset</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
                     </form>
 
                 </div>

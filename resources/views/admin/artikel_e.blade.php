@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Assesment</h1>
+                <h1>Artikel</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Assesment Mandiri</li>
+                    <li class="breadcrumb-item active">Artikel</li>
                 </ol>
             </div>
         </div>
@@ -20,76 +20,46 @@
 
             <div class="card">
                 <div class="card-header">
-                    <a href="/admin/assesment" class="btn btn-warning float-right"><i class="fas fa-angle-left"></i> Kembali</a>
+                    <a href="/admin/Artikel" class="btn btn-warning float-right"><i class="fas fa-angle-left"></i>
+                        Kembali</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form action="/admin/assesment/{{ $assesment->id }}" method="POST">
+                    <form action="/admin/artikel/{{ $artikel->id }}" method="POST">
                         @method('put')
                         @csrf
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label for="user">Mahasiswa</label>
-                                    <select class="form-control @error('user_id') is-invalid @enderror" name="user_id"
-                                        id="user_id">
-                                        <option value="0">~ Pilih mahasiswa ~</option>
-                                        @foreach ($user as $u)
-                                            @if ($u->role == 'mahasiswa')
-                                                @if (old('user_id') == $u->id)
-                                                    <option value="{{ $u->id }}" selected>{{ $u->nama }}
-                                                    </option>
-                                                @else
-                                                    <option value="{{ $u->id }}">{{ $u->nama }}</option>
-                                                @endif
-                                            @endif
-                                        @endforeach
+                                    <label for="judul">Judul</label>
+                                    <input type="Text" id="judul" name="judul" placeholder="Judul"
+                                        class="form-control @error('judul') is-invalid @enderror"
+                                        value="{{ old('judul', $artikel->judul) }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="isi">Isi</label>
+                                    <textarea name="isi" id="isi" cols="30" rows="10"
+                                        class="form-control @error('isi') is-invalid @enderror">{{ old('isi', $artikel->isi) }}</textarea>
+                                    @error('isi')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="is_show">Status</label>
+                                    <select class="form-control" id="is_show" name="is_show">
+                                        <option value="1"><i>Status</i></option>
+                                        <option value="true"><i>Tampilkan</i></option>
+                                        <option value="false"><i>Tidak</i></option>
                                     </select>
-                                    @error('user_id')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="nama">Nama Assesment</label>
-                                    <input type="text" name="nama" id="nama" placeholder="nama"
-                                        class="form-control  @error('nama') is-invalid @enderror"
-                                        value="{{ old('nama', $assesment->nama) }}">
-                                    @error('nama')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="skor">Skor</label>
-                                    <input type="number" name="skor" id="skor" placeholder="skor"
-                                        class="form-control @error('skor') is-invalid @enderror"
-                                        value="{{ old('skor', $assesment->skor) }}">
-                                    @error('skor')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="keterangan">Keterangan</label>
-                                    <textarea class="form-control" name="keterangan" id="keterangan" cols="30" rows="10"
-                                        @error('keterangan') is-invalid @enderror">{{  old('keterangan', $assesment->keterangan) }}</textarea>
-                                    @error('keterangan')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
                                 </div>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success">Simpan</button>
                         <button type="reset" class="btn btn-danger">Reset</button>
-                    </form>
-
                 </div>
+                </form>
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->
