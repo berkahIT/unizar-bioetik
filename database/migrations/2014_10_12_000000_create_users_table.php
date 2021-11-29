@@ -24,9 +24,10 @@ class CreateUsersTable extends Migration
             $table->string('jenis_kelamin');
             $table->text('alamat');
             $table->date('tanggal_lahir');
-            $table->string('spesialis');
-            $table->text('detail');
+            $table->string('spesialis')->default('-');
+            $table->text('detail')->default('-');
             $table->string('role');
+            $table->string('jenis_konselor')->default('-');
             $table->string('profile_photo_path');
             $table->rememberToken();
             $table->timestamps();

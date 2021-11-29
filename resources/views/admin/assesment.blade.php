@@ -36,10 +36,10 @@
                                 <tr>
                                     @foreach ($mahasiswa as $m)
                                         @if ($m->id == $assesment->user_id)
-                                            <td>{{ $m->nama }}</td>
+                                            <td>{{ $m->name }}</td>
                                         @endif
                                     @endforeach
-                                    <td>{{ $assesment->nama }}</td>
+                                    <td>{{ $assesment->name_assesment }}</td>
                                     <td>{{ $assesment->skor }}</td>
                                     <td>{{ $assesment->keterangan }}</td>
                                 </tr>

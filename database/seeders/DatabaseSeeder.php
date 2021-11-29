@@ -4,9 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Assesment;
-use App\Models\Konselor;
 use App\Models\KritikSaran;
-use App\Models\Mahasiswa;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,14 +19,14 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         Assesment::create([
-            'user_id' => 1,
+            'user_id' => 2,
             'name_assesment' => "keluhan1",
             'skor' => 2,
             'keterangan' => "tes",
         ]);
 
         Assesment::create([
-            'user_id' => 1,
+            'user_id' => 2,
             'name_assesment' => "keluhan2",
             'skor' => 100,
             'keterangan' => "awok",
@@ -46,6 +44,7 @@ class DatabaseSeeder extends Seeder
             'spesialis' => "psikolog",
             'detail' => "saya psikolog",
             'role' => "konselor",
+            'jenis_konselor' => "psikolog",
             'profile_photo_path' => "konselor",
         ]);
 
@@ -61,6 +60,7 @@ class DatabaseSeeder extends Seeder
             'spesialis' => "-",
             'detail' => "-",
             'role' => "mahasiswa",
+            'jenis_konselor' => "-",
             'profile_photo_path' => "mahasiswa",
         ]);
 

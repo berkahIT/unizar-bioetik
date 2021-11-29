@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mahasiswa;
+use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
 {
@@ -16,7 +16,7 @@ class MahasiswaController extends Controller
     public function index()
     {
         return view('admin.mahasiswa', [
-            "mahasiswa" => Mahasiswa::all(),
+            "mahasiswa" => User::where('role', "mahasiswa")->get()
         ]);
     }
 
@@ -39,16 +39,25 @@ class MahasiswaController extends Controller
     public function store(Request $request)
     {
         $validatedDate = $request->validate([
-            'nama' => 'required',
+            'name' => 'required',
             'username' => 'required',
-            'passwords' => 'required',
+            'password' => 'required',
             'jenis_kelamin' => 'required',
             'nim' => 'required',
             'email' => 'required',
-            'tanggal' => 'required',
+            'alamat' => 'required',
+            'tanggal_lahir' => 'required',
+            'role' => 'required',
+            'profile_photo_path' => 'file|required'
         ]);
 
-        Mahasiswa::create($validatedDate);
+        if ($request->file('profile_photo_path')) {
+            $validatedDate['profile_photo_path'] = $request->file('profile_photo_path')->store('/public/profile_photo_path');
+        } else {
+            echo "gagal";
+        }
+
+        User::create($validatedDate);
 
         return redirect('/admin/mahasiswa')->with('success', 'New mahasiswa has been addedd!');
     }
@@ -74,7 +83,7 @@ class MahasiswaController extends Controller
     {
         return view('admin.mahasiswa_e', [
             "title" => "mahasiswa",
-            "mahasiswa" => Mahasiswa::where('id', $id)->first()
+            "mahasiswa" => User::where('id', $id)->first()
         ]);
     }
 
@@ -88,16 +97,26 @@ class MahasiswaController extends Controller
     public function update(Request $request, $id)
     {
         $validatedDate = $request->validate([
-            'nama' => 'required',
+            'name' => 'required',
             'username' => 'required',
-            'passwords' => 'required',
+            'password' => 'required',
             'nim' => 'required',
             'email' => 'required',
             'jenis_kelamin' => 'required',
-            'tanggal' => 'required'
+            'tanggal_lahir' => 'required',
+            'alamat' => 'required',
+            'role' => 'required'
         ]);
 
-        Mahasiswa::where('id', $id)->update($validatedDate);
+        if ($request->file('profile_photo_path')) {
+
+            if ($request->oldprofile_photo_path) {
+                Storage::delete($request->oldprofile_photo_path);
+            }
+            $validatedDate['profile_photo_path'] = $request->file('profile_photo_path')->store('/public/profile_photo_path');
+        }
+
+        User::where('id', $id)->update($validatedDate);
 
         return redirect('/admin/mahasiswa')->with('success', 'mahasiswa has been update!');
     }
@@ -110,7 +129,12 @@ class MahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        Mahasiswa::destroy($id);
+        $data = User::where('id', $id)->first()->profile_photo_path;
+        if ($data) {
+            Storage::delete($data);
+        }
+
+        User::destroy($id);
 
         return redirect('/admin/mahasiswa')->with('success', 'mahasiswa has been delted!');
     }

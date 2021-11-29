@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Konselor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class KonselorController extends Controller
 {
@@ -17,7 +17,7 @@ class KonselorController extends Controller
     public function index()
     {
         return view('admin.konselor', [
-            "konselor" => Konselor::all(),
+            "konselor" => User::where('role', "konselor")->get()
         ]);
     }
 
@@ -40,16 +40,28 @@ class KonselorController extends Controller
     public function store(Request $request)
     {
         $validatedDate = $request->validate([
-            'nama' => 'required',
+            'name' => 'required',
             'username' => 'required',
-            'passwords' => 'required',
+            'password' => 'required',
             'jenis_kelamin' => 'required',
-            'nidn' => 'required',
+            'nim' => 'required',
             'email' => 'required',
-            'tanggal' => 'required',
+            'tanggal_lahir' => 'required',
+            'alamat' => 'required',
+            'spesialis' => 'required',
+            'detail' => 'required',
+            'jenis_konselor' => 'required',
+            'role' => 'required',
+            'profile_photo_path' => 'file|required'
         ]);
 
-        Konselor::create($validatedDate);
+        if ($request->file('profile_photo_path')) {
+            $validatedDate['profile_photo_path'] = $request->file('profile_photo_path')->store('/public/profile_photo_path');
+        } else {
+            echo "gagal";
+        }
+
+        User::create($validatedDate);
 
         return redirect('/admin/konselor')->with('success', 'New Konselor has been addedd!');
     }
@@ -75,7 +87,7 @@ class KonselorController extends Controller
     {
         return view('admin.konselor_e', [
             "title" => "Konselor",
-            "konselor" => Konselor::where('id', $id)->first()
+            "konselor" => User::where('id', $id)->first()
         ]);
     }
 
@@ -89,18 +101,30 @@ class KonselorController extends Controller
     public function update(Request $request, $id)
     {
         $validatedDate = $request->validate([
-            'nama' => 'required',
+            'name' => 'required',
             'username' => 'required',
-            'passwords' => 'required',
-            'nidn' => 'required',
-            'email' => 'required',
+            'password' => 'required',
             'jenis_kelamin' => 'required',
-            'tanggal' => 'required'
+            'nim' => 'required',
+            'email' => 'required',
+            'tanggal_lahir' => 'required',
+            'alamat' => 'required',
+            'spesialis' => 'required',
+            'detail' => 'required',
+            'role' => 'required'
         ]);
 
-        Konselor::where('id', $id)->update($validatedDate);
+        if ($request->file('profile_photo_path')) {
 
-        return redirect('/admin/konselor')->with('success','Konselor has been update!');
+            if ($request->oldprofile_photo_path) {
+                Storage::delete($request->oldprofile_photo_path);
+            }
+            $validatedDate['profile_photo_path'] = $request->file('profile_photo_path')->store('/public/profile_photo_path');
+        }
+
+        User::where('id', $id)->update($validatedDate);
+
+        return redirect('/admin/konselor')->with('success', 'Konselor has been update!');
     }
 
     /**
@@ -111,7 +135,12 @@ class KonselorController extends Controller
      */
     public function destroy($id)
     {
-        Konselor::destroy($id);
+        $data = User::where('id', $id)->first()->profile_photo_path;
+        if ($data) {
+            Storage::delete($data);
+        }
+
+        User::destroy($id);
 
         return redirect('/admin/konselor')->with('success', 'Konselor has been delted!');
     }

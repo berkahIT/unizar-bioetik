@@ -25,7 +25,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form action="/admin/konselor/{{ $konselor->id }}" method="POST">
+                    <form action="/admin/konselor/{{ $konselor->id }}" method="POST" enctype="multipart/form-data">
                         @method('put')
                         @csrf
                         <div class="row">
@@ -42,22 +42,22 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="nama">Nama</label>
-                                    <input type="text" name="nama" id="nama" placeholder="nama"
-                                        class="form-control  @error('nama') is-invalid @enderror"
-                                        value="{{ old('nama', $konselor->nama) }}">
-                                    @error('nama')
+                                    <label for="name">Nama</label>
+                                    <input type="text" name="name" id="name" placeholder="name"
+                                        class="form-control  @error('name') is-invalid @enderror"
+                                        value="{{ old('name', $konselor->name) }}">
+                                    @error('name')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="nidn">NIDN</label>
-                                    <input type="number" name="nidn" id="nidn" placeholder="NIDN"
-                                        class="form-control  @error('nidn') is-invalid @enderror"
-                                        value="{{ old('nidn', $konselor->nidn) }}">
-                                    @error('nidn')
+                                    <label for="nim">NIDN</label>
+                                    <input type="number" name="nim" id="nim" placeholder="NIDN"
+                                        class="form-control  @error('nim') is-invalid @enderror"
+                                        value="{{ old('nim', $konselor->nim) }}">
+                                    @error('nim')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -72,11 +72,11 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tanggal">Tanggal Lahir</label>
-                                    <input type="date" name="tanggal" id="tanggal" placeholder="tanggal"
-                                        class="form-control  @error('tanggal') is-invalid @enderror"
-                                        value="{{ old('tanggal', $konselor->tanggal) }}">
-                                    @error('tanggal')
+                                    <label for="tanggal_lahir">Tanggal Lahir</label>
+                                    <input type="date" name="tanggal_lahir" id="tanggal_lahir" placeholder="tanggal_lahir"
+                                        class="form-control  @error('tanggal_lahir') is-invalid @enderror"
+                                        value="{{ old('tanggal_lahir', $konselor->tanggal_lahir) }}">
+                                    @error('tanggal_lahir')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -94,15 +94,72 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="passwords">Password</label>
-                                    <input type="text" name="passwords" id="passwords" placeholder="passwords"
-                                        class="form-control  @error('passwords') is-invalid @enderror"
-                                        value="{{ old('passwords', $konselor->passwords) }}">
-                                    @error('passwords')
+                                    <label for="password">Password</label>
+                                    <input type="text" name="password" id="password" placeholder="password"
+                                        class="form-control  @error('password') is-invalid @enderror"
+                                        value="{{ old('password', $konselor->password) }}">
+                                    @error('password')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
                                     @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="alamat">Alamat</label>
+                                    <textarea class="form-control  @error('alamat') is-invalid @enderror" name="alamat"
+                                        id="alamat" cols="30" rows="10">{{ old('alamat', $konselor->alamat) }}</textarea>
+                                    @error('alamat')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="spesialis">Spesialis</label>
+                                    <input type="text" name="spesialis" id="spesialis" placeholder="spesialis"
+                                        class="form-control  @error('spesialis') is-invalid @enderror"
+                                        value="{{ old('spesialis', $konselor->spesialis) }}">
+                                    @error('spesialis')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="jenis_konselor">Jenis Konselor</label>
+                                    <select class="form-control" id="jenis_konselor" name="jenis_konselor">
+                                        <option value=""><i>Jenis Kelamin</i></option>
+                                        <option value="Psikolog"><i>Psikolog</i></option>
+                                        <option value="Konselor"><i>Konselor</i></option>
+                                        <option value="Konselor Ahli"><i>Konselor Ahli</i></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="detail">Detail</label>
+                                    <textarea class="form-control" name="detail" id="detail" cols="30"
+                                        rows="10">{{ old('detail', $konselor->detail) }}</textarea>
+                                    @error('detail')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profile_photo_path">Photo</label>
+                                    <input type="file" name="profile_photo_path" id="profile_photo_path" placeholder="Photo"
+                                        class="form-control @error('profile_photo_path') is-invalid @enderror"
+                                        value="{{ old('profile_photo_path', $konselor->profile_photo_path) }}">
+                                    <input type="hidden" name="oldprofile_photo_path"
+                                        value="{{ $konselor->profile_photo_path }}">
+                                    <p>*Photo</p>
+                                    @error('profile_photo_path')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" id="role" name="role" value="konselor">
                                 </div>
                             </div>
                         </div>

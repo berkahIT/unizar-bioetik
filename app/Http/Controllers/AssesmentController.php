@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assesment;
-use App\Models\Mahasiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -18,7 +17,7 @@ class AssesmentController extends Controller
     {
         return view('admin.assesment', [
             "assesment" => Assesment::all(),
-            "mahasiswa" => Mahasiswa::where('id', "1")->get()
+            "mahasiswa" => User::where('role', "mahasiswa")->get()
         ]);
     }
 
@@ -65,7 +64,7 @@ class AssesmentController extends Controller
         return view('admin.assesment_e', [
             "title" => "Assesment Mandiri",
             "assesment" => Assesment::where('id', $id)->first(),
-            "mahasiswa" => Mahasiswa::where('id', "1")->get()
+            "mahasiswa" => User::where('role', "mahasiswa")->get()
         ]);
     }
 

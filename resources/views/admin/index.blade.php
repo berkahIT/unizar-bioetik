@@ -22,7 +22,7 @@
                 <div class="inner">
                   <h3>150</h3>
   
-                  <p>Assesment Mandiri</p>
+                  <p>Assesment</p>
                 </div>
                 <div class="icon">
                   <i class="fas fa-tasks"></i>

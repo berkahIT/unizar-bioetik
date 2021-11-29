@@ -47,13 +47,13 @@
                     </a>
                 </li>
 
-                {{-- <li class="nav-item">
+                <li class="nav-item">
                     <a href="/admin/bioetik" class="nav-link {{ Request::is('admin/bioetik*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-file-medical-alt"></i>
                         <p>Lapor Bioetik
                         </p>
                     </a>
-                </li> --}}
+                </li>
 
                 <li class="nav-item">
                     <a href="/admin/rekam_medik"

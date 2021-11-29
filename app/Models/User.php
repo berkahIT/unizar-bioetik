@@ -29,6 +29,7 @@ class User extends Authenticatable
         'spesialis',
         'detail',
         'role',
+        'jenis_konselor',
         'profile_photo_path'
     ];
 

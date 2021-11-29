@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Konselor;
+use App\Models\User;
 use App\Models\Konsultasi;
-use App\Models\Mahasiswa;
 use App\Models\RekamMedik;
 use Illuminate\Http\Request;
 
@@ -19,8 +18,8 @@ class KonsultasiController extends Controller
     {
         return view('admin.konsultasi ', [
             "konsultasi" => Konsultasi::all(),
-            "mahasiswa" => Mahasiswa::all(),
-            "konselor" => Konselor::all(),
+            "mahasiswa" => User::all(),
+            "konselor" => User::all(),
             "rekam_medik" => RekamMedik::all(),
         ]);
     }
@@ -80,8 +79,8 @@ class KonsultasiController extends Controller
         return view('admin.konsultasi_e', [
             "title" => "konsultasi",
             "konsultasi" => Konsultasi::where('id', $id)->first(),
-            "mahasiswa" => Mahasiswa::all(),
-            "konselor" => Konselor::all(),
+            "mahasiswa" => User::all(),
+            "konselor" => User::all(),
             "rekam_medik" => RekamMedik::all(),
         ]);
     }

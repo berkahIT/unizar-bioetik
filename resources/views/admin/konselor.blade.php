@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <p class="small">Silahkan Masukkan Data Konselor</p>
-                                    <form action="/admin/konselor" method="POST">
+                                    <form action="/admin/konselor" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="row">
                                             <div class="col-sm-12">
@@ -53,13 +53,13 @@
                                                         placeholder="Username">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="nama">Nama</label>
-                                                    <input type="text" class="form-control" id="nama" name="nama"
+                                                    <label for="name">Nama</label>
+                                                    <input type="text" class="form-control" id="name" name="name"
                                                         placeholder="Nama">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="nidn">NIDN</label>
-                                                    <input type="text" class="form-control" id="nidn" name="nidn"
+                                                    <label for="nim">NIDN</label>
+                                                    <input type="text" class="form-control" id="nim" name="nim"
                                                         placeholder="NIDN">
                                                 </div>
                                                 <div class="form-group">
@@ -71,9 +71,9 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="tanggal">Tanggal Lahir</label>
-                                                    <input type="date" class="form-control" id="tanggal" name="tanggal"
-                                                        placeholder="Tanggal Lahir">
+                                                    <label for="tanggal_lahir">Tanggal Lahir</label>
+                                                    <input type="date" class="form-control" id="tanggal_lahir"
+                                                        name="tanggal_lahir" placeholder="Tanggal Lahir">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="email">Email</label>
@@ -81,9 +81,51 @@
                                                         placeholder="Email">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="passwords">Password</label>
-                                                    <input type="password" class="form-control" id="passwords"
-                                                        name="passwords" placeholder="Password">
+                                                    <label for="password">Password</label>
+                                                    <input type="password" class="form-control" id="password"
+                                                        name="password" placeholder="Password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="alamat">Alamat</label>
+                                                    <textarea class="form-control" name="alamat" id="alamat" cols="30"
+                                                        rows="10"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="spesialis">Spesialis</label>
+                                                    <input type="spesialis" class="form-control" id="spesialis"
+                                                        name="spesialis" placeholder="Spesialis">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="jenis_konselor">Jenis Konselor</label>
+                                                    <select class="form-control" id="jenis_konselor"
+                                                        name="jenis_konselor">
+                                                        <option value=""><i>Jenis Konselor</i></option>
+                                                        <option value="Psikolog"><i>Psikolog</i></option>
+                                                        <option value="Konselor"><i>Konselor</i></option>
+                                                        <option value="Konselor Ahli"><i>Konselor Ahli</i></option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="detail">Detail</label>
+                                                    <textarea class="form-control" name="detail" id="detail" cols="30"
+                                                        rows="10"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="profile_photo_path">Photo</label>
+                                                    <input type="file" name="profile_photo_path" id="profile_photo_path"
+                                                        placeholder="Photo"
+                                                        class="form-control @error('profile_photo_path') is-invalid @enderror"
+                                                        value="{{ old('profile_photo_path') }}">
+                                                    <p>*Photo</p>
+                                                    @error('profile_photo_path')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" id="role" name="role"
+                                                        value="konselor">
                                                 </div>
                                             </div>
 
@@ -114,11 +156,11 @@
                         <tbody>
                             @foreach ($konselor as $konselor)
                                 <tr>
-                                    <td>{{ $konselor->nama }}</td>
+                                    <td>{{ $konselor->name }}</td>
                                     <td>{{ $konselor->email }}</td>
                                     <td>{{ $konselor->username }}</td>
-                                    <td>{{ $konselor->nidn }}</td>
-                                    <td>{{ $konselor->tanggal }}</td>
+                                    <td>{{ $konselor->nim }}</td>
+                                    <td>{{ $konselor->tanggal_lahir }}</td>
                                     <td>
                                         <a href="/admin/konselor/{{ $konselor->id }}/edit"><i
                                                 class="fas fa-edit"></i></a> |
