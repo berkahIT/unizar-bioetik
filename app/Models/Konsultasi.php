@@ -15,7 +15,17 @@ class Konsultasi extends Model
         'rekam_medik',
         'rekam_medik_id',
         'tanggal',
+        'jam',
         'jenis_konsultasi',
+        'photo_rekam_medik',
         'status'
     ];
+
+    public function mahasiswa(){
+        return $this->belongsTo(User::class,'mahasiswa_id','id');
+    }
+
+    public function konselor(){
+        return $this->belongsTo(User::class,'konselor_id','id');
+    }
 }

@@ -29,53 +29,12 @@
                         @method('put')
                         @csrf
                         <div class="form-group">
-                            <label for="user_id">Nama Mahasiswa</label>
-                            <select class="form-control @error('user_id') is-invalid @enderror" name="user_id" id="user_id"
-                                autofocus>
-                                <option value="1">~ Pilih Mahasiswa ~</option>
-                                @foreach ($mahasiswa as $u)
-                                    @if (old('user_id', $u->nama)) == $u->id)
-                                        <option value="{{ $u->id }}" selected>{{ $u->nama }}</option>
-                                    @else
-                                        <option value="{{ $u->id }}">{{ $u->nama }}</option>
-                                    @endif
-                                @endforeach
+                            <label for="status">Status</label>
+                            <select class="form-control" id="status" name="status">
+                                <option value=""><i>Pilih Status</i></option>
+                                <option value="selesai"><i>Selesai</i></option>
+                                <option value="pending"><i>Pending</i></option>
                             </select>
-                            @error('user_id')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="konsultasi_id">Nama Konsultasi</label>
-                            <select class="form-control @error('konsultasi_id') is-invalid @enderror" name="konsultasi_id"
-                                id="konsultasi_id" autofocus>
-                                <option value="1">~ Pilih Mahasiswa ~</option>
-                                @foreach ($konsultasi as $k)
-                                    @if (old('konsultasi_id', $k->nama)) == $k->id)
-                                        <option value="{{ $k->id }}" selected>{{ $k->nama }}</option>
-                                    @else
-                                        <option value="{{ $k->id }}">{{ $k->nama }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                            @error('konsultasi_id')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="tanggal">Tanggal Lahir</label>
-                            <input type="date" name="tanggal" id="tanggal" placeholder="tanggal"
-                                class="form-control  @error('tanggal') is-invalid @enderror"
-                                value="{{ old('tanggal', $rekam_medik->tanggal) }}">
-                            @error('tanggal')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="photo_rekam_medik">Photo Rekam Medik</label>

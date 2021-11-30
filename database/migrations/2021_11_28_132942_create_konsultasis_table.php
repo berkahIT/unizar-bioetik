@@ -17,11 +17,13 @@ class CreateKonsultasisTable extends Migration
             $table->id();
             $table->foreignId('mahasiswa_id');
             $table->foreignId('konselor_id');
-            $table->boolean('rekam_medik');
-            $table->integer('rekam_medik_id');
+            $table->boolean('rekam_medik')->default(false);
+            $table->integer('rekam_medik_id')->nullable();
             $table->string('jenis_konsultasi');
-            $table->string('status');
-            $table->timestamp('tanggal');
+            $table->string('status')->default('pending');
+            $table->date('tanggal');
+            $table->string('photo_rekam_medik')->default('kosong');
+            $table->time('jam');
             $table->timestamps();
         });
     }

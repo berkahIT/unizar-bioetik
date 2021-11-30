@@ -34,14 +34,14 @@
                                     <label for="nama">Nama Mahasiswa</label>
                                     <select class="form-control @error('mahasiswa_id') is-invalid @enderror"
                                         name="mahasiswa_id" id="mahasiswa_id" autofocus>
-                                        <option value="1">~ Pilih Mahasiswa ~</option>
+                                        <option value="">~ Pilih Mahasiswa ~</option>
                                         @foreach ($mahasiswa as $m)
-                                            @if (old('mahasiswa_id') == $m->id)
+                                            @if (old('mahasiswa_id', $konsultasi->mahasiswa_id) == $m->id)
                                                 <option value="{{ $m->id }}" selected>
-                                                    {{ $m->nama }}</option>
+                                                    {{ $m->name }}</option>
                                             @else
                                                 <option value="{{ $m->id }}">
-                                                    {{ $m->nama }}</option>
+                                                    {{ $m->name }}</option>
                                             @endif
                                         @endforeach
                                     </select>
@@ -55,18 +55,18 @@
                                     <label for="nama">Nama Konselor</label>
                                     <select class="form-control @error('konselor_id') is-invalid @enderror"
                                         name="konselor_id" id="konselor_id" autofocus>
-                                        <option value="1">~ Pilih konselor ~</option>
+                                        <option value="">~ Pilih konselor ~</option>
                                         @foreach ($konselor as $k)
-                                            @if (old('konselor_id') == $k->id)
+                                            @if (old('konselor_id', $konsultasi->konselor_id) == $k->id)
                                                 <option value="{{ $k->id }}" selected>
-                                                    {{ $k->nama }}</option>
+                                                    {{ $k->name }}</option>
                                             @else
                                                 <option value="{{ $k->id }}">
-                                                    {{ $k->nama }}</option>
+                                                    {{ $k->name }}</option>
                                             @endif
                                         @endforeach
                                     </select>
-                                    @error('matkul_id')
+                                    @error('konselor_id')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="tanggal">Tanggal</label>
-                                    <input type="date" name="tanggal" id="tanggal" placeholder="Tanggal"
+                                    <input type="datetime" name="tanggal" id="tanggal" placeholder="Tanggal"
                                         class="form-control  @error('tanggal') is-invalid @enderror"
                                         value="{{ old('tanggal', $konsultasi->tanggal) }}">
                                     @error('tanggal')
@@ -84,40 +84,11 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="rekam_medik">Status Rekam Medik</label>
-                                    <select class="form-control @error('rekam_medik') is-invalid @enderror"
-                                        name="rekam_medik" id="rekam_medik" autofocus>
-                                        <option value="1">~ Status Rekam Medik ~</option>
-                                        @if (old('konsultasi_id') == $konsultasi->id)
-                                            <option value="{{ $konsultasi->status }}" selected>
-                                                {{ $konsultasi->rekam_medik }}</option>
-                                        @else
-                                            <option value="{{ $konsultasi->status }}">
-                                                {{ $konsultasi->rekam_medik }}</option>
-                                        @endif
-                                    </select>
-                                    @error('rekam_medik')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="rekam_medik_id">Rekam Medik</label>
-                                    <select class="form-control @error('rekam_medik_id') is-invalid @enderror"
-                                        name="rekam_medik_id" id="rekam_medik_id" autofocus>
-                                        <option value="1">~ Pilih Rekam Medik ~</option>
-                                        @foreach ($rekam_medik as $r)
-                                            @if (old('konsultasi_id') == $r->id)
-                                                <option value="{{ $r->id }}" selected>
-                                                    {{ $r->nama }}</option>
-                                            @else
-                                                <option value="{{ $r->id }}">
-                                                    {{ $r->nama }}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                    @error('rekam_medik_id')
+                                    <label for="jam">Jam</label>
+                                    <input type="time" name="jam" id="jam" placeholder="Jam"
+                                        class="form-control  @error('jam') is-invalid @enderror"
+                                        value="{{ old('jam', $konsultasi->jam) }}">
+                                    @error('jam')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -127,35 +98,11 @@
                                     <label for="jenis_konsultasi">Jenis Konsultasi</label>
                                     <select class="form-control @error('jenis_konsultasi') is-invalid @enderror"
                                         name="jenis_konsultasi" id="jenis_konsultasi" autofocus>
-                                        <option value="1">~ Jenis Konsultasi ~</option>
-                                        @if (old('konsultasi_id') == $konsultasi->id)
-                                            <option value="{{ $konsultasi->jenis_konsultasi }}" selected>
-                                                {{ $konsultasi->jenis_konsultasi }}</option>
-                                        @else
-                                            <option value="{{ $konsultasi->jenis_konsultasi }}">
-                                                {{ $konsultasi->jenis_konsultasi }}</option>
-                                        @endif
+                                        <option value="">~ Jenis Konsultasi ~</option>
+                                        <option value="wajib"><i>Wajib</i></option>
+                                        <option value="relawan"><i>Relawan</i></option>
                                     </select>
                                     @error('jenis_konsultasi')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="status">Status</label>
-                                    <select class="form-control @error('status') is-invalid @enderror"
-                                        name="status" id="status" autofocus>
-                                        <option value="1">~ Status ~</option>
-                                        @if (old('konsultasi_id') == $konsultasi->id)
-                                            <option value="{{ $konsultasi->status }}" selected>
-                                                {{ $konsultasi->status }}</option>
-                                        @else
-                                            <option value="{{ $konsultasi->status }}">
-                                                {{ $konsultasi->status }}</option>
-                                        @endif
-                                    </select>
-                                    @error('status')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>

@@ -34,7 +34,7 @@
                                         <span class="fw-mediumbold">
                                             Tambah</span>
                                         <span class="fw-light">
-                                            Dosen
+                                            Konsultasi
                                         </span>
                                     </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -95,34 +95,9 @@
                                                         placeholder="Tanggal">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="exampleFormControlSelect1">Status Rekam Medik</label>
-                                                    <select class="form-control" id="rekam_medik" name="rekam_medik">
-                                                        <option value=""><i>Rekam Medik</i></option>
-                                                        <option value="true"><i>Ada</i></option>
-                                                        <option value="false"><i>Tidak Ada</i></option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="rekam_medik_id">Rekam Medik</label>
-                                                    <select
-                                                        class="form-control @error('rekam_medik_id') is-invalid @enderror"
-                                                        name="rekam_medik_id" id="rekam_medik_id" autofocus>
-                                                        <option value="1">~ Pilih Rekam Medik ~</option>
-                                                        @foreach ($rekam_medik as $r)
-                                                            @if (old('konsultasi_id') == $r->id)
-                                                                <option value="{{ $r->id }}" selected>
-                                                                    {{ $r->nama }}</option>
-                                                            @else
-                                                                <option value="{{ $r->id }}">
-                                                                    {{ $r->nama }}</option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
-                                                    @error('rekam_medik_id')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
+                                                    <label for="jam">Jam</label>
+                                                    <input type="time" class="form-control" id="jam" name="jam"
+                                                        placeholder="jam">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="jenis_konsultasi">Jenis Konsultasi</label>
@@ -131,14 +106,6 @@
                                                         <option value=""><i>Konsultasi</i></option>
                                                         <option value="wajib"><i>Wajib</i></option>
                                                         <option value="relawan"><i>Relawan</i></option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="status">Status</label>
-                                                    <select class="form-control" id="status" name="status">
-                                                        <option value=""><i>Status</i></option>
-                                                        <option value="true"><i>Ada</i></option>
-                                                        <option value="false"><i>Tidak Ada</i></option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -160,9 +127,10 @@
                             <tr>
                                 <th>Mahasiswa</th>
                                 <th>Konselor</th>
-                                <th>Rekam Medik</th>
                                 <th>Jenis Konsultasi</th>
                                 <th>Tanggal</th>
+                                <th>Jam</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -171,21 +139,18 @@
                                 <tr>
                                     @foreach ($mahasiswa as $m)
                                         @if ($m->id == $konsultasi->mahasiswa_id)
-                                            <td>{{ $m->nama }}</td>
+                                            <td>{{ $m->name }}</td>
                                         @endif
                                     @endforeach
                                     @foreach ($konselor as $ko)
                                         @if ($ko->id == $konsultasi->konselor_id)
-                                            <td>{{ $ko->nama }}</td>
-                                        @endif
-                                    @endforeach
-                                    @foreach ($rekam_medik as $re)
-                                        @if ($re->id == $konsultasi->rekam_medik_id)
-                                            <td>{{ $re->photo_rekam_medik }}</td>
+                                            <td>{{ $ko->name }}</td>
                                         @endif
                                     @endforeach
                                     <td>{{ $konsultasi->jenis_konsultasi }}</td>
                                     <td>{{ $konsultasi->tanggal }}</td>
+                                    <td>{{ $konsultasi->jam }}</td>
+                                    <td>{{ $konsultasi->status }}</td>
                                     <td>
                                         <a href="/admin/konsultasi/{{ $konsultasi->id }}/edit"><i
                                                 class="fas fa-edit"></i></a> |
@@ -203,11 +168,12 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Username</th>
-                                <th>NIDN</th>
-                                <th>Tanggal Lahir</th>
+                                <th>Mahasiswa</th>
+                                <th>Konselor</th>
+                                <th>Jenis Konsultasi</th>
+                                <th>Tanggal</th>
+                                <th>Jam</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

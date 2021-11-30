@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Assesment;
 use App\Models\Bioetik;
+use App\Models\Konsultasi;
 use App\Models\KritikSaran;
 use Illuminate\Database\Seeder;
 
@@ -74,6 +75,15 @@ class DatabaseSeeder extends Seeder
             'nim' => 123123,
             'masalah' => "hai saya punya masalah",
             'status' => true,
+        ]);
+
+        Konsultasi::create([
+            'mahasiswa_id' => 2,
+            'konselor_id' => 1,
+            'tanggal' => '2021/09/21',
+            'jam' => '07:01',
+            'rekam_medik' => true,
+            'jenis_konsultasi' => 'konsultasi psikis'
         ]);
     }
 }

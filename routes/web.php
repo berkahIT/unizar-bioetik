@@ -40,8 +40,6 @@ Route::resource('/admin/bioetik', BioetikController::class);
 
 Route::resource('/admin/rekam_medik', RekamMedikController::class);
 
-Route::resource('/admin/history_assesment', HistoryAssesmentController::class);
-
 Route::resource('/admin/kritik_saran', KritikSaranController::class);
 
 Route::resource('/admin/konsultasi', KonsultasiController::class);

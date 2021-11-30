@@ -19,117 +19,15 @@
         <div class="col-12">
 
             <div class="card">
-                <div class="card-header">
-                    <button class="btn btn-success float-right" data-toggle="modal" data-target="#addRowModal"><i
-                            class="fas fa-plus"></i> Tambah</button>
-                </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <!-- Modal -->
-                    <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header no-bd">
-                                    <h5 class="modal-title">
-                                        <span class="fw-mediumbold">
-                                            Tambah</span>
-                                        <span class="fw-light">
-                                            Rekam Medik
-                                        </span>
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="small">Silahkan Masukkan Data Rekam Medik</p>
-                                    <form action="/admin/rekam_medik" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <label for="nama">Nama Mahasiswa</label>
-                                                    <select class="form-control @error('user_id') is-invalid @enderror"
-                                                        name="user_id" id="user_id" autofocus>
-                                                        <option value="1">~ Pilih Mahasiswa ~</option>
-                                                        @foreach ($mahasiswa as $m)
-                                                            @if (old('user_id') == $m->id)
-                                                                <option value="{{ $m->id }}" selected>
-                                                                    {{ $m->name }}</option>
-                                                            @else
-                                                                <option value="{{ $m->id }}">
-                                                                    {{ $m->name }}</option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
-                                                    @error('user_id')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="nama">Nama Konsultasi</label>
-                                                    <select
-                                                        class="form-control @error('konsultasi_id') is-invalid @enderror"
-                                                        name="konsultasi_id" id="konsultasi_id" autofocus>
-                                                        <option value="1">~ Pilih Konsultasi ~</option>
-                                                        @foreach ($konsultasi as $k)
-                                                            @if (old('konsultasi_id') == $k->id)
-                                                                <option value="{{ $k->id }}" selected>
-                                                                    {{ $k->nama }}</option>
-                                                            @else
-                                                                <option value="{{ $k->id }}">
-                                                                    {{ $k->nama }}</option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
-                                                    @error('matkul_id')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="tanggal">Tanggal</label>
-                                                    <input type="date" class="form-control" id="tanggal" name="tanggal"
-                                                        placeholder="Tanggal">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="materi_tunanetra">Photo Rekam Medik</label>
-                                                    <input type="file" name="photo_rekam_medik" id="photo_rekam_medik"
-                                                        placeholder="Photo Rekam Medik"
-                                                        class="form-control @error('photo_rekam_medik') is-invalid @enderror"
-                                                        value="{{ old('photo_rekam_medik') }}">
-                                                    <p>*Photo Rekam Medik</p>
-                                                    @error('photo_rekam_medik')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                </div>
-                                <div class="modal-footer no-bd">
-                                    <button type="submit" class="btn btn-success">Simpan</button>
-                                    </form>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- Penutup Modal --}}
 
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Nama Mahasiswa</th>
-                                <th>Konsultasi</th>
-                                <th>Tanggal </th>
                                 <th>Photo Rekam Medik</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -137,17 +35,12 @@
                             @foreach ($rekam_medik as $rekam_medik)
                                 <tr>
                                     @foreach ($mahasiswa as $m)
-                                        @if ($m->id == $rekam_medik->user_id)
-                                            <td>{{ $m->nama }}</td>
+                                        @if ($m->id == $rekam_medik->mahasiswa_id)
+                                            <td>{{ $m->name }}</td>
                                         @endif
                                     @endforeach
-                                    @foreach ($konsultasi as $ko)
-                                        @if ($ko->id == $rekam_medik->konsultasi_id)
-                                            <td>{{ $ko->status }}</td>
-                                        @endif
-                                    @endforeach
-                                    <td>{{ $rekam_medik->tanggal }}</td>
                                     <td>{{ $rekam_medik->photo_rekam_medik }}</td>
+                                    <td>{{ $rekam_medik->status }}</td>
                                     <td>
                                         <a href="/admin/rekam_medik/{{ $rekam_medik->id }}/edit"><i
                                                 class="fas fa-edit"></i></a> |
@@ -166,9 +59,8 @@
                         <tfoot>
                             <tr>
                                 <th>Nama Mahasiswa</th>
-                                <th>Konsultasi</th>
-                                <th>Tanggal </th>
                                 <th>Photo Rekam Medik</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

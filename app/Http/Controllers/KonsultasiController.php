@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Konsultasi;
-use App\Models\RekamMedik;
 use Illuminate\Http\Request;
 
 class KonsultasiController extends Controller
@@ -19,8 +18,7 @@ class KonsultasiController extends Controller
         return view('admin.konsultasi ', [
             "konsultasi" => Konsultasi::all(),
             "mahasiswa" => User::where('role', "mahasiswa")->get(),
-            "konselor" => User::where('role', "konselor")->get(),
-            "rekam_medik" => RekamMedik::all(),
+            "konselor" => User::where('role', "konselor")->get()
         ]);
     }
 
@@ -45,11 +43,9 @@ class KonsultasiController extends Controller
         $validatedDate = $request->validate([
             'mahasiswa_id' => 'required',
             'konselor_id' => 'required',
-            'rekam_medik' => 'required',
-            'rekam_medik_id' => 'required',
             'tanggal' => 'required',
             'jenis_konsultasi' => 'required',
-            'status' => 'required'
+            'jam' => 'required',
         ]);
 
         Konsultasi::create($validatedDate);
@@ -80,8 +76,7 @@ class KonsultasiController extends Controller
             "title" => "konsultasi",
             "konsultasi" => Konsultasi::where('id', $id)->first(),
             "mahasiswa" => User::where('role', "mahasiswa")->get(),
-            "konselor" => User::where('role', "konselor")->get(),
-            "rekam_medik" => RekamMedik::all(),
+            "konselor" => User::where('role', "konselor")->get()
         ]);
     }
 
@@ -97,11 +92,9 @@ class KonsultasiController extends Controller
         $validatedDate = $request->validate([
             'mahasiswa_id' => 'required',
             'konselor_id' => 'required',
-            'rekam_medik' => 'required',
-            'rekam_medik_id' => 'required',
             'tanggal' => 'required',
             'jenis_konsultasi' => 'required',
-            'status' => 'required'
+            'jam' => 'required',
         ]);
 
         Konsultasi::where('id', $id)->update($validatedDate);
