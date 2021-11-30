@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assesment;
+use App\Models\Bioetik;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,7 +16,18 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $mahasiswa = User::where('role', 'mahasiswa')->get();
+        $assessment = Assesment::all();
+        $konselor = User::where('role', 'konselor')->get();
+        $bioetik = Bioetik::all();
+
+
+        return view('admin.index', [
+            'mahasiswa' => count($mahasiswa),
+            'assessment' => count($assessment),
+            'konselor' => count($konselor),
+            'bioetik' => count($bioetik)
+        ]);
     }
 
     /**

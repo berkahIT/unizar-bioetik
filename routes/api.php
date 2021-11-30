@@ -23,6 +23,7 @@ use App\Http\Controllers\KritikSaranController;
 // Route API V1
 Route::prefix('/v1')->group(function () {
     Route::post('/login', [UserController::class, 'login']);
+    Route::post('/register', [UserController::class, 'register']);
 
     // Untuk user yang sudah login
     Route::middleware('auth:sanctum')->group(function () {
