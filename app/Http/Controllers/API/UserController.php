@@ -94,4 +94,28 @@ class UserController extends Controller
             ], 'Not Found', 404);
         }
     }
+
+    // Register Akun
+    public function register(Request $request)
+    {
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'username' => $request->username,
+            'nim' => $request->nim,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'spesialis' => $request->spesialis,
+            'detail' => $request->detail,
+            'role' => $request->role,
+            'jenis_konselor' => $request->jenis_konselor,
+            'profile_photo_path' => $request->profile_photo_path
+        ]);
+
+        return ResponseFormatter::success([
+            'message' => 'sukses'
+        ], 'Berhassil');
+    }
 }
