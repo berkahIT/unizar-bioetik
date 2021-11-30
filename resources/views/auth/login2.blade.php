@@ -21,7 +21,8 @@
               <img style="border-radius: 20px;" src="{{ asset('img/LOGO FK unizar (1).png') }}" class="img-fluid" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" style="box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; padding: 30px">
-              <form>
+              <form action="/authenticate" method="POST">
+                @csrf
                 <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                   <p class="lead fw-normal mb-0 me-3">Welcome to BIOETIK </p>
 
@@ -34,15 +35,15 @@
 
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                    <label class="form-label" for="form3Example3">Username</label>
-                  <input type="email" id="form3Example3" class="form-control form-control-lg"
+                    <label class="form-label" for="username">Username</label>
+                  <input type="text" id="username" name="username" class="form-control form-control-lg"
                     placeholder="Username" />
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-3">
-                    <label class="form-label" for="form3Example4">Password</label>
-                    <input type="password" id="form3Example4" class="form-control form-control-lg"
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-control form-control-lg"
                     placeholder="Password" />
                 </div>
 
