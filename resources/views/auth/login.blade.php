@@ -25,6 +25,7 @@
       <p class="login-box-msg">Sign in to start your session</p>
 
       <form action="/authenticate" method="post">
+        @csrf
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="username" id="username" placeholder="Username">
           <div class="input-group-append">

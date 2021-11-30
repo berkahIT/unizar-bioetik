@@ -110,7 +110,13 @@
                         <a class="dropdown-item" href="#">My Profile</a>
                         <a class="dropdown-item" href="#">Account Setting</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Logout</a>
+
+                        {{-- Form Logout --}}
+                        <form action="/logout" method="POST">
+                            @csrf
+
+                            <button class="dropdown-item" type="submit">Logout</button>
+                        </form>
                     </div>
                 </li>
 
