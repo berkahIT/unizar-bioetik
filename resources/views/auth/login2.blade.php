@@ -53,7 +53,15 @@
                 </div>
 
               </form>
+
+            {{-- <div>
+                <h5>
+                    Develpe By SAMSKARA
+                </h5>
+            </div> --}}
             </div>
+
+
           </div>
         </div>
         {{-- <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-2 px-2 px-xl-5 bg-success">
