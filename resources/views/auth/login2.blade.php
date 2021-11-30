@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="text-center text-lg-start mt-3 pt-2">
-                  <button type="button" class="btn btn-success btn-lg"
+                  <button type="submit" class="btn btn-success btn-lg"
                     style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
                 </div>
 
