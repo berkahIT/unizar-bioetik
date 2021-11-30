@@ -10,8 +10,11 @@ use App\Http\Controllers\KritikSaranController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\RekamMedikController;
 use App\Http\Controllers\ArtikelController;
-
+use App\Http\Controllers\AuthController;
+use App\Http\Middleware\Authenticate;
+use Doctrine\DBAL\Schema\Index;
 use Illuminate\Support\Facades\Route;
+use PharIo\Manifest\AuthorCollection;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +27,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+    AuthController::class, 'index'
+]);
+
+Route::post('/authenticate', [
+    AuthController::class, 'authenticate'
+]);
 
 Route::resource('/admin/dashboard', AdminController::class);
 
