@@ -32,6 +32,8 @@ Route::prefix('/v1')->group(function () {
         // User
         Route::get('/user', [UserController::class, 'profile']);
         Route::get('/konselor', [UserController::class, 'konselor']);
+        Route::post('/changephoto', [UserController::class, 'gantiPhotoProfile']);
+
 
         // Lapor Bioetik
         Route::post('/laporbioetik/mahasiswa', [LaporBioetikApiController::class, 'mahasiswa']);

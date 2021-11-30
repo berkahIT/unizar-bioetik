@@ -118,4 +118,12 @@ class UserController extends Controller
             'message' => 'sukses'
         ], 'Berhassil');
     }
+
+    // Ganti Photo profile
+    public function gantiPhotoProfile(Request $request)
+    {
+        $request->validate([
+            'photo' => ['required', 'image', 'file', 'max:12400']
+        ]);
+    }
 }
