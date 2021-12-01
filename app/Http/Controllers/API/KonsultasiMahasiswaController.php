@@ -37,8 +37,10 @@ class KonsultasiMahasiswaController extends Controller
                 'jam' => ['required']
             ]);
 
+            $user = Auth::user();
+
             $data = Konsultasi::create([
-                'mahasiswa_id' => Auth::user()->id,
+                'mahasiswa_id' => $user->id,
                 'konselor_id' => $request->konselor_id,
                 'jenis_konsultasi' => $request->jenis_konsultasi,
                 'tanggal' => $request->tanggal,
