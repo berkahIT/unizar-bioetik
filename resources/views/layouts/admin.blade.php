@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- JQVMap -->
     <link rel="stylesheet" href="/plugins/jqvmap/jqvmap.min.css">
+    <!-- Ekko Lightbox -->
+    <link rel="stylesheet" href="/plugins/ekko-lightbox/ekko-lightbox.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
@@ -153,6 +155,10 @@
 
     <!-- jQuery -->
     <script src="/plugins/jquery/jquery.min.js"></script>
+    <!-- Ekko Lightbox -->
+    <script src="/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+    <!-- Filterizr-->
+    <script src="/plugins/filterizr/jquery.filterizr.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
