@@ -17,7 +17,7 @@ class CreateArtikelsTable extends Migration
             $table->id();
             $table->string('judul');
             $table->text('isi');
-            $table->string('is_show');
+            $table->boolean('is_show');
             $table->string('photo_artikel');
             $table->timestamps();
         });

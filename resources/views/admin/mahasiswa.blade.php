@@ -20,8 +20,10 @@
 
             <div class="card">
                 <div class="card-header">
-                    <button class="btn btn-success float-right" data-toggle="modal" data-target="#addRowModal"><i
-                            class="fas fa-plus"></i> Tambah</button>
+                    <button class="btn btn-success float-right ml-3" data-toggle="modal" data-target="#addRowModal"><i class="fas fa-plus"></i> Tambah</button>
+                    <button class="btn btn-success float-right ml-3" data-toggle="modal" data-target="#addRowModal"><i class="fas fa-download"></i> Format Import</button>
+                    <button class="btn btn-success float-right ml-3" data-toggle="modal" data-target="#addRowModal"><i class="fas fa-file-import"></i> Import Mahasiswa</button>
+
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">

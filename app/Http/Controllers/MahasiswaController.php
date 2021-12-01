@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
@@ -50,6 +51,8 @@ class MahasiswaController extends Controller
             'role' => 'required',
             'profile_photo_path' => 'file|required'
         ]);
+
+        $validatedDate['password'] = Hash::make($request->password);
 
         if ($request->file('profile_photo_path')) {
             $validatedDate['profile_photo_path'] = $request->file('profile_photo_path')->store('/public/profile_photo_path');

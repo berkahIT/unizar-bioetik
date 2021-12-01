@@ -29,26 +29,34 @@ use PharIo\Manifest\AuthorCollection;
 
 Route::get('/', [
     AuthController::class, 'index'
-]);
+])->name('login')->middleware('guest');
 
 Route::post('/authenticate', [
     AuthController::class, 'authenticate'
 ]);
 
-Route::resource('/admin/dashboard', AdminController::class);
+Route::post('/logout', [
+    AuthController::class, 'logout'
+]);
 
-Route::resource('/admin/assesment', AssesmentController::class);
 
-Route::resource('/admin/konselor', KonselorController::class);
+// Middelware
+Route::group(['middleware' => ['auth', 'cekrole:admin']], function () {
+    Route::resource('/admin/dashboard', AdminController::class);
 
-Route::resource('/admin/mahasiswa', MahasiswaController::class);
+    Route::resource('/admin/assesment', AssesmentController::class);
 
-Route::resource('/admin/bioetik', BioetikController::class);
+    Route::resource('/admin/konselor', KonselorController::class);
 
-Route::resource('/admin/rekam_medik', RekamMedikController::class);
+    Route::resource('/admin/mahasiswa', MahasiswaController::class);
 
-Route::resource('/admin/kritik_saran', KritikSaranController::class);
+    Route::resource('/admin/bioetik', BioetikController::class);
 
-Route::resource('/admin/konsultasi', KonsultasiController::class);
+    Route::resource('/admin/rekam_medik', RekamMedikController::class);
 
-Route::resource('/admin/artikel', ArtikelController::class);
+    Route::resource('/admin/kritik_saran', KritikSaranController::class);
+
+    Route::resource('/admin/konsultasi', KonsultasiController::class);
+
+    Route::resource('/admin/artikel', ArtikelController::class);
+});

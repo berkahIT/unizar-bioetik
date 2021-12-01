@@ -18,7 +18,7 @@ class CreateKonsultasisTable extends Migration
             $table->foreignId('mahasiswa_id');
             $table->foreignId('konselor_id');
             $table->boolean('rekam_medik')->default(false);
-            $table->integer('rekam_medik_id')->nullable();
+            $table->integer('rekam_medik_id')->default(0);
             $table->string('jenis_konsultasi');
             $table->string('status')->default('pending');
             $table->date('tanggal');
